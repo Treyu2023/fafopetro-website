@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>FAFO PETRO SERVICES L.L.C. — Business Card</title>
+    <style>
+      @page {
+        size: 3.5in 2in;
+        margin: 0;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: #111;
+      }
+      body {
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: #f2f0ea;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 32px 16px 48px;
+      }
+      h1.page-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9a958a;
+      }
+      /* 3.5" × 2" @ 300dpi = 1050 × 600 */
+      .card {
+        width: 1050px;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        background:
+          radial-gradient(
+            120% 90% at 100% 0%,
+            rgba(245, 166, 35, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            80% 70% at 0% 100%,
+            rgba(20, 184, 166, 0.12),
+            transparent 50%
+          ),
+          linear-gradient(145deg, #14141a 0%, #0b0b10 55%, #121018 100%);
+        border: 2px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+          0 24px 60px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        color: #f4f1ea;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 28px 28px;
+        mask-image: linear-gradient(120deg, #000 20%, transparent 70%);
+        pointer-events: none;
+      }
+      .accent-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 14px;
+        background: linear-gradient(180deg, #f5a623 0%, #e8890c 45%, #14b8a6 100%);
+      }
+      .inner {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        padding: 48px 56px 44px 52px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 18px;
+      }
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .mark {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        background: linear-gradient(145deg, #f5a623, #e8890c);
+        color: #1a1205;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 22px;
+        letter-spacing: -0.04em;
+        box-shadow: 0 8px 24px rgba(245, 166, 35, 0.35);
+        flex-shrink: 0;
+      }
+      .brand-text .legal {
+        font-size: 26px;
+        font-weight: 750;
+        letter-spacing: 0.02em;
+        line-height: 1.15;
+        color: #fff;
+      }
+      .brand-text .tag {
+        margin-top: 6px;
+        font-size: 15px;
+        color: #b7b1a4;
+        letter-spacing: 0.01em;
+      }
+      .mid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 28px;
+        align-items: end;
+        padding-top: 8px;
+      }
+      .person .name {
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: #fff;
+      }
+      .person .role {
+        margin-top: 6px;
+        font-size: 16px;
+        color: #f5a623;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .person .blurb {
+        margin-top: 14px;
+        font-size: 15px;
+        line-height: 1.45;
+        color: #a9a49a;
+        max-width: 28ch;
+      }
+      .contact {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 16px;
+        line-height: 1.35;
+        color: #e8e4db;
+      }
+      .contact .row {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+      .contact .ico {
+        color: #f5a623;
+        font-size: 14px;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+      .contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 16px;
+        font-size: 13px;
+        color: #8d877c;
+      }
+      .foot strong {
+        color: #d8d2c6;
+        font-weight: 600;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(245, 166, 35, 0.35);
+        background: rgba(245, 166, 35, 0.1);
+        color: #f5c56a;
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .hint {
+        max-width: 1050px;
+        color: #7a756c;
+        font-size: 13px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      @media print {
+        body {
+          background: #000;
+          padding: 0;
+          gap: 0;
+        }
+        h1.page-title,
+        .hint {
+          display: none;
+        }
+        .card {
+          border-radius: 0;
+          box-shadow: none;
+          border: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="page-title">One-sided magnetic business card · 3.5″ × 2″ @ 300dpi</h1>
+    <div class="card" id="card">
+      <div class="accent-bar" aria-hidden="true"></div>
+      <div class="inner">
+        <div class="brand-row">
+          <div class="mark" aria-hidden="true">FP</div>
+          <div class="brand-text">
+            <div class="legal">FAFO PETRO SERVICES L.L.C.</div>
+            <div class="tag">Field service · Custom tools · Creative systems</div>
+          </div>
+        </div>
+        <div class="mid">
+          <div class="person">
+            <div class="name">Ryan W. Key</div>
+            <div class="role">Founder · Field Technician</div>
+            <div class="blurb">
+              Dispenser, POS & ATG service across the NC Triad. 25+ years in
+              the field.
+            </div>
+          </div>
+          <div class="contact">
+            <div class="row">
+              <span class="ico">T</span>
+              <span>(972) 877-1848 · text preferred</span>
+            </div>
+            <div class="row">
+              <span class="ico">E</span>
+              <span>Rkey@FAFOPETRO.com</span>
+            </div>
+            <div class="row">
+              <span class="ico">W</span>
+              <span>www.fafopetro.com</span>
+            </div>
+            <div class="row">
+              <span class="ico">A</span>
+              <span>1787 W 3rd St, Siler City, NC 27344</span>
+            </div>
+            <div class="row">
+              <span class="ico">Y</span>
+              <span>youtube.com/@rwkey</span>
+            </div>
+          </div>
+        </div>
+        <div class="foot">
+          <span
+            >Est. May 8, 2025 · <strong>FAFO PETRO SERVICES L.L.C.</strong></span
+          >
+          <span class="pill">One side · magnetic back ready</span>
+        </div>
+      </div>
+    </div>
+    <p class="hint">
+      Print-ready face for magnetic-backed cards (single side). Use the PNG at
+      1050×600 (3.5×2 in @ 300 dpi) or print this HTML at 100% scale with no
+      margins.
+    </p>
+  </body>
+</html>

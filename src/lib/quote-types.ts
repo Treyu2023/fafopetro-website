@@ -1,0 +1,47 @@
+export type LeadPayload = {
+  storeName: string;
+  contactName: string;
+  phone: string;
+  email: string;
+  siteAddress: string;
+  city: string;
+  state: string;
+  zip: string;
+  equipmentNotes: string;
+  issueNotes: string;
+  milesOneWay: number;
+  travelHoursOneWay: number;
+  onSiteHours: number;
+  laborCost: number;
+  travelTimeCost: number;
+  mileageCost: number;
+  minimumTotal: number;
+  roundTripTotal: number;
+  savingsVsRoundTrip: number;
+  routeSource: string;
+  resolvedAddress: string;
+};
+
+export type LeadRow = {
+  id: string;
+  created_at: string;
+  store_name: string | null;
+  contact_name: string;
+  phone: string;
+  email: string | null;
+  site_address: string;
+  city: string | null;
+  state: string | null;
+  zip: string | null;
+  equipment_notes: string | null;
+  issue_notes: string | null;
+  miles_one_way: number | null;
+  travel_hours_one_way: number | null;
+  on_site_hours: number | null;
+  labor_cost: number | null;
+  travel_time_cost: number | null;
+  mileage_cost: number | null;
+  minimum_total: number | null;
+  savings_vs_round_trip: number | null;
+  route_source: string | null;
+};
