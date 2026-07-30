@@ -1,0 +1,45 @@
+# Auto-deploy when you push to main.
+# One-time setup (you do once in GitHub + Vercel, then Grok/I can keep updating via git push):
+#   1. https://vercel.com/new → Import Treyu2023/fafopetro-website → Deploy
+#   2. Vercel → Project → Settings → Environment Variables (optional DATABASE_URL)
+#   3. Vercel → Account Settings → Tokens → Create → copy token
+#   4. GitHub repo → Settings → Secrets and variables → Actions → New repository secret:
+#        Name: VERCEL_TOKEN          Value: (token from step 3)
+#        Name: VERCEL_ORG_ID         Value: (Vercel → Project → Settings → General → Team/User ID)
+#        Name: VERCEL_PROJECT_ID     Value: (same page → Project ID)
+#   After that, every push to main deploys automatically.
+
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Pull Vercel project settings
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Build for Vercel
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Deploy production
+        run: npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
