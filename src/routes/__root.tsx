@@ -1,8 +1,13 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemePicker } from "@/components/ThemePicker";
 import appCss from "@/styles.css?url";
 import { site } from "@/data/site";
+
+const fontHref =
+  "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500&display=swap";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -23,23 +28,31 @@ export const Route = createRootRoute({
           "Field service · Custom AI toolbox · Track → inference → edit → 4K upscale → social release",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: fontHref },
+    ],
   }),
   component: RootComponent,
 });
 
 function RootComponent() {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="amber-field">
       <head>
         <HeadContent />
       </head>
       <body className="min-h-dvh bg-bg text-fg antialiased">
-        <SiteHeader />
-        <main className="min-h-[60dvh]">
-          <Outlet />
-        </main>
-        <SiteFooter />
+        <ThemeProvider>
+          <SiteHeader />
+          <main className="min-h-[60dvh]">
+            <Outlet />
+          </main>
+          <SiteFooter />
+          <ThemePicker />
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>

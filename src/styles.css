@@ -1,22 +1,26 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/*
+  Semantic color tokens — values come from [data-theme] below.
+  Tailwind maps these to utilities: bg-bg, text-fg, bg-primary, etc.
+*/
 @theme {
-  --color-bg: #070809;
-  --color-bg-elevated: #0c0e11;
-  --color-surface: #13161b;
-  --color-surface-2: #1a1e26;
-  --color-fg: #f0f2f5;
-  --color-muted: #9aa3b2;
-  --color-subtle: #6b7380;
-  --color-border: #2a303a;
-  --color-border-strong: #3d4654;
-  --color-primary: #e8a317;
-  --color-primary-fg: #0a0a0b;
-  --color-accent: #3d8bfd;
-  --color-success: #34d399;
-  --color-danger: #f87171;
-  --color-warn: #fbbf24;
+  --color-bg: var(--theme-bg);
+  --color-bg-elevated: var(--theme-bg-elevated);
+  --color-surface: var(--theme-surface);
+  --color-surface-2: var(--theme-surface-2);
+  --color-fg: var(--theme-fg);
+  --color-muted: var(--theme-muted);
+  --color-subtle: var(--theme-subtle);
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+  --color-primary: var(--theme-primary);
+  --color-primary-fg: var(--theme-primary-fg);
+  --color-accent: var(--theme-accent);
+  --color-success: var(--theme-success);
+  --color-danger: var(--theme-danger);
+  --color-warn: var(--theme-warn);
 
   --font-sans: "DM Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
   --font-display: "DM Sans", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
@@ -27,6 +31,107 @@
   --radius-lg: 1rem;
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
+}
+
+/* ── Theme: Amber Field (default brand) ─────────────────────────── */
+:root,
+[data-theme="amber-field"] {
+  color-scheme: dark;
+  --theme-bg: #070809;
+  --theme-bg-elevated: #0c0e11;
+  --theme-surface: #13161b;
+  --theme-surface-2: #1a1e26;
+  --theme-fg: #f0f2f5;
+  --theme-muted: #9aa3b2;
+  --theme-subtle: #6b7380;
+  --theme-border: #2a303a;
+  --theme-border-strong: #3d4654;
+  --theme-primary: #e8a317;
+  --theme-primary-fg: #0a0a0b;
+  --theme-accent: #3d8bfd;
+  --theme-success: #34d399;
+  --theme-danger: #f87171;
+  --theme-warn: #fbbf24;
+}
+
+/* ── Theme: Hi-Vis Ops ──────────────────────────────────────────── */
+[data-theme="hi-vis"] {
+  color-scheme: dark;
+  --theme-bg: #0a0c10;
+  --theme-bg-elevated: #0f1218;
+  --theme-surface: #141820;
+  --theme-surface-2: #1c222e;
+  --theme-fg: #eef1f6;
+  --theme-muted: #9aa4b5;
+  --theme-subtle: #6b7588;
+  --theme-border: #2a3140;
+  --theme-border-strong: #3d475c;
+  --theme-primary: #f97316;
+  --theme-primary-fg: #140a02;
+  --theme-accent: #38bdf8;
+  --theme-success: #4ade80;
+  --theme-danger: #fb7185;
+  --theme-warn: #facc15;
+}
+
+/* ── Theme: Daylight Pro ────────────────────────────────────────── */
+[data-theme="daylight"] {
+  color-scheme: light;
+  --theme-bg: #f5f6f8;
+  --theme-bg-elevated: #eef0f4;
+  --theme-surface: #ffffff;
+  --theme-surface-2: #e8ebf0;
+  --theme-fg: #12151a;
+  --theme-muted: #5b6574;
+  --theme-subtle: #7a8494;
+  --theme-border: #d5dae3;
+  --theme-border-strong: #b4bcc9;
+  --theme-primary: #1e3a5f;
+  --theme-primary-fg: #f7f9fc;
+  --theme-accent: #0d9488;
+  --theme-success: #059669;
+  --theme-danger: #dc2626;
+  --theme-warn: #d97706;
+}
+
+/* ── Theme: Steel Pipeline ──────────────────────────────────────── */
+[data-theme="pipeline"] {
+  color-scheme: dark;
+  --theme-bg: #060708;
+  --theme-bg-elevated: #0b0d10;
+  --theme-surface: #111418;
+  --theme-surface-2: #181c22;
+  --theme-fg: #e8ecf1;
+  --theme-muted: #96a0ad;
+  --theme-subtle: #6a7380;
+  --theme-border: #262b33;
+  --theme-border-strong: #3a424e;
+  --theme-primary: #7eb8d4;
+  --theme-primary-fg: #061018;
+  --theme-accent: #94a3b8;
+  --theme-success: #34d399;
+  --theme-danger: #f87171;
+  --theme-warn: #fbbf24;
+}
+
+/* ── Theme: Sandstone ───────────────────────────────────────────── */
+[data-theme="sandstone"] {
+  color-scheme: light;
+  --theme-bg: #f7f2ea;
+  --theme-bg-elevated: #efe8dc;
+  --theme-surface: #fffdf9;
+  --theme-surface-2: #ebe3d6;
+  --theme-fg: #1c1610;
+  --theme-muted: #6b5f52;
+  --theme-subtle: #8a7b6b;
+  --theme-border: #ddd2c2;
+  --theme-border-strong: #c4b5a0;
+  --theme-primary: #b45309;
+  --theme-primary-fg: #fffaf3;
+  --theme-accent: #0f766e;
+  --theme-success: #047857;
+  --theme-danger: #b91c1c;
+  --theme-warn: #ca8a04;
 }
 
 @layer base {
@@ -50,6 +155,9 @@
     font-family: var(--font-sans);
     line-height: 1.55;
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 220ms ease,
+      color 220ms ease;
   }
 
   h1,
@@ -131,7 +239,8 @@
     box-shadow: inset 0 1px 0 color-mix(in oklab, var(--color-fg) 7%, transparent);
   }
 
-  .amber-glow {
+  .amber-glow,
+  .primary-glow {
     box-shadow:
       0 0 0 1px color-mix(in oklab, var(--color-primary) 25%, transparent),
       0 12px 40px -16px color-mix(in oklab, var(--color-primary) 45%, transparent);
