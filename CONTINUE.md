@@ -1,79 +1,59 @@
 # FAFO Petro website — continue here
 
-**Last saved:** 2026-07-31  
+**Last saved:** 2026-07-31 (late night session)  
 **Owner:** Ryan W. Key / FAFO Petro Services LLC  
-**Domain goal:** fafopetro.com (not Google Sites — this is the replacement app)  
-**GitHub backup:** https://github.com/Treyu2023/fafopetro-website (private)
+**Domain goal:** fafopetro.com  
 
-## How to pick this back up
+## Where the work is saved
 
-1. Open this project in Grok Build / App Builder and say:  
-   **“Continue FAFO Petro from CONTINUE.md and the GitHub repo Treyu2023/fafopetro-website”**
-2. Or clone the GitHub repo and restore files into the workspace.
-3. Run `sh /workspace/startup.sh` (or `npm run dev`) so the live preview is up on port 8080.
-4. Do **not** re-scaffold from zero unless the workspace is empty — edit in place.
+| What | Where |
+|------|--------|
+| **Tonight’s full snapshot** | Branch **`wip/2026-07-31-station-ui`** on GitHub |
+| **Repo (private)** | https://github.com/Treyu2023/fafopetro-website |
+| **Branch URL** | https://github.com/Treyu2023/fafopetro-website/tree/wip/2026-07-31-station-ui |
+| **Commit** | `e445b1f` — night station UI, Verifone road zones, AI corner, lead DB |
+| **Older fuller main** | `main` still has prior tools (sites registry, parts, toolbox, downloads, etc.) |
 
-## What is already built
+**Do not lose this link.** Bookmark the branch or the repo.
 
-### Public site (TanStack Start + React + Tailwind)
-- Night gas-station UI: canopy glow, fluorescent flicker, asphalt texture
-- Brand: FAFO PETRO signage fonts (Bebas/Oswald/Barlow), pump badge (no third-party logo parody)
-- Pages: Home, Services, AI Corner, Software, About, Contact, Request Service
-- Private admin: `/admin/leads` (access code default `fafopetro-leads` — change via `LEADS_ACCESS_CODE`)
+## How to pick it back up (say this to Grok)
 
-### Services / pricing
-- Verifone onboarding: **$100 flat per site**
-- Travel: **$65/hr** + **$0.75/mi**, zones step every **55 mi / +1 hour** from Siler City (1787 W 3rd St)
-- Road-style zone map (not pure crow-flies circles) + sample route lines
-- Multi-site same trip: **travel once**, onboarding × sites
-- T&M caveat if work/travel exceeds zone allotment
-- “Pricing is available” — map is a guide
+> Continue my FAFO Petro website from GitHub repo **Treyu2023/fafopetro-website** branch **wip/2026-07-31-station-ui**. Read **CONTINUE.md** first and keep editing — don’t rebuild from zero.
 
-### Other services listed
-- Dispensers, POS, cable management, ATG, monthly walkthroughs
-- Flip/startup testing, advocacy, PA-DSS / anti-theft guidance
-- Local backups (Passport + Verifone)
-- C-Store Management / C-Site Management (list both names)
-- AI integration services
-- Wayne electronics newer than Vista II: out of scope
-- Experience: **26+ years** only (no “almost 27” wording)
+Or, if the preview is still alive: “continue where we left off.”
 
-### AI Corner (`/ai`)
-- 3D spinning project ring, orbit map, terminal demo, tilt cards
-- FAFO Progen, Local Media, Commander tools, site AI story
-- “Play next” ideas for future prototypes
+## What tonight’s branch has
+
+### Public site
+- Night gas-station UI (canopy, fluoro flicker, asphalt)
+- FAFO PETRO signage fonts + pump badge (safe branding)
+- Pages: Home, Services, **AI Corner**, Software, About, Contact, Request Service
+- Private leads: `/admin/leads` (code default `fafopetro-leads`)
+
+### Verifone / zones
+- $100 onboarding **per site**
+- Travel $65/hr + $0.75/mi, zones every 55 mi / +1 hour from Siler City
+- Road-style bands (not pure crow-flies) + sample route lines
+- Multi-site: travel once per trip, onboarding × sites
+- T&M if past zone allotment; “pricing is available”
+
+### AI Corner
+- 3D spin gallery, orbit map, terminal demo, tilt cards
+- Progen / Local Media / Commander / site AI story
 
 ### Lead capture
-- Form posts to DB table `service_requests` (migration `0002_service_requests.sql`)
-- Appends `data/service-requests.jsonl` when filesystem allows
-- Export CSV from admin leads page
+- DB table + JSONL hard file + CSV export
 
-### Contact (public)
-- Phone/text: (972) 877-1848 (text preferred)
-- Email: Rkey@FAFOPETRO.com
-- Address: 1787 W 3rd St, Siler City, NC 27344
+### Contact
+- (972) 877-1848 text preferred · Rkey@FAFOPETRO.com · Siler City, NC  
+- 26+ years only (no “almost 27”)
 
-## Explicitly NOT on the public site
-- Employer rants / old company drama
-- Lawsuit-bait brand parodies
-- Sticky notes / Windows files (not accessible from this environment)
+## Note for later merges
+`main` may still hold useful pieces (field sites, parts pricebook, media slots, downloads, quote calculator). When resuming, **merge carefully** — tonight’s branch is a cleaner station redesign of the marketing shell; don’t blindly delete main’s field tools without asking Ryan.
 
-## Next ideas (user-driven)
-- Road zones more accurate / real routing later
-- Google Maps site layouts for NC fuel database
-- Wire leads into larger comb/gather software
-- More AI gallery wow (photo intake, backup vault UI, etc.)
-- Domain DNS point fafopetro.com at this deploy when ready
-- Fee sheet / published package rates when Ryan is ready
-
-## Dev notes for the agent
-- Stack: Vite 8, TanStack Start, Tailwind v4, port **0.0.0.0:8080**
-- `startup.sh` must stay idempotent and start `npm run dev`
-- Do not import vendored `vite-tanstack-config` in vite.config (breaks standalone build)
-- Gate nitro vercel preset on `command === "build"` only
-- Verify with Playwright + `npm run build` before calling done
-- Skills: `design-ui` for UI polish
-
-## Access codes / secrets
-- Admin leads default code: `fafopetro-leads` (set `LEADS_ACCESS_CODE` in production)
-- Never commit real customer lead dumps publicly
+## Next ideas
+- Better road routing / zones  
+- NC fuel site database + Maps layouts  
+- Wire leads into comb/gather software  
+- More AI wow prototypes  
+- Point fafopetro.com when ready  
