@@ -1,8 +1,7 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from "@tanstack/react-router";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import appCss from "@/styles.css?url";
-import { site } from "@/data/site";
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { Toaster } from "sonner";
+import { SiteShell } from "@/components/layout/SiteShell";
+import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -10,36 +9,46 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        title: `${site.brandName} | Field Service, Tools & Creative Systems`,
+        title: "FAFO Petro Services | C-Store Dispenser, POS & ATG Service — NC Triad",
       },
       {
         name: "description",
-        content: `${site.legalName} — C-store dispenser, POS, and ATG field service in North Carolina. ${site.experience}. Custom toolbox apps and a music-video workflow: inference, edit, 4K upscale, final cut, social release.`,
-      },
-      { property: "og:title", content: site.brandName },
-      {
-        property: "og:description",
         content:
-          "Field service · Custom AI toolbox · Track → inference → edit → 4K upscale → social release",
+          "FAFO Petro Services LLC — independent field service for C-store dispensers, POS, and ATG equipment across the Triad and surrounding North Carolina. Founded by Ryan W. Key.",
+      },
+      { name: "theme-color", content: "#06080c" },
+    ],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&family=Oswald:wght@500;600;700&display=swap",
       },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
   }),
   component: RootComponent,
 });
 
 function RootComponent() {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-dvh bg-bg text-fg antialiased">
-        <SiteHeader />
-        <main className="min-h-[60dvh]">
+      <body className="bg-bg text-fg">
+        <SiteShell>
           <Outlet />
-        </main>
-        <SiteFooter />
+        </SiteShell>
+        <Toaster
+          theme="dark"
+          position="top-center"
+          toastOptions={{
+            className: "border border-primary/20 bg-surface text-fg",
+          }}
+        />
         <Scripts />
       </body>
     </html>

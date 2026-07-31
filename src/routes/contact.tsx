@@ -1,199 +1,123 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Section, SectionHeading } from "@/components/Section";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Mail, MapPin, MessageSquare, Phone } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { publicSocials, site } from "@/data/site";
-import { useMediaSlot } from "@/components/MediaSlot";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Youtube,
-  MessageSquare,
-  Download,
-  IdCard,
-} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
-    meta: [{ title: `Contact | ${site.brandName}` }],
+    meta: [
+      { title: "Contact | FAFO Petro Services" },
+      {
+        name: "description",
+        content:
+          "Contact FAFO Petro Services: (972) 877-1848 (text preferred), Rkey@FAFOPETRO.com, Siler City, NC.",
+      },
+    ],
   }),
 });
 
 function ContactPage() {
-  const card = useMediaSlot("contact.business_card");
-  const cardSrc = card?.src || "/images/fafo-business-card.png";
-  const socials = publicSocials();
   return (
-    <>
-      <Section className="pb-8 pt-14">
-        <Badge className="mb-4">Contact</Badge>
-        <SectionHeading
-          title="Text first. Email for longer scopes."
-          description={`Service applications, site issues, toolbox / Local Media feedback, and creative collabs for ${site.legalName}. Need a price first? Use the service call calculator — $65/hr, $0.75/mi one-way.`}
-        />
-        <a
-          href="/quote"
-          className="mt-4 inline-flex h-11 items-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-fg"
-        >
-          Open service call calculator
-        </a>
-      </Section>
-
-      {socials.length ? (
-        <Section className="pt-0 pb-4">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-subtle">
-            Find us online
+    <div>
+      <section className="border-b border-border grid-bg py-14 md:py-20">
+        <div className="container-site max-w-3xl">
+          <Badge className="mb-4">Contact</Badge>
+          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+            Reach FAFO Petro Services
+          </h1>
+          <p className="mt-4 text-muted leading-relaxed">
+            Texting is preferred for the fastest reply. Email works for service
+            applications, software support, and longer write-ups.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {socials.map((s) => (
-              <a
-                key={s.id}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-10 items-center rounded-xl border border-border bg-surface px-4 text-sm font-medium text-muted transition hover:border-border-strong hover:text-fg"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
-        </Section>
-      ) : null}
+        </div>
+      </section>
 
-      <Section className="pt-0">
-        <div className="grid gap-4 md:grid-cols-2">
-          <a href={`mailto:${site.email}`} className="group">
-            <Card className="h-full hover:border-border-strong">
-              <CardHeader>
-                <Mail className="mb-2 h-5 w-5 text-primary" />
-                <CardTitle>Email</CardTitle>
-                <CardDescription className="text-fg transition-colors group-hover:text-primary">
-                  {site.email}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </a>
-          <a href={`sms:${site.phoneRaw}`} className="group">
-            <Card className="h-full hover:border-border-strong amber-glow border-primary/20">
-              <CardHeader>
-                <MessageSquare className="mb-2 h-5 w-5 text-primary" />
-                <CardTitle>Text preferred</CardTitle>
-                <CardDescription className="text-fg transition-colors group-hover:text-primary">
-                  {site.phone}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </a>
-          <a href={`tel:${site.phoneRaw}`} className="group">
-            <Card className="h-full hover:border-border-strong">
-              <CardHeader>
-                <Phone className="mb-2 h-5 w-5 text-primary" />
-                <CardTitle>Call</CardTitle>
-                <CardDescription className="text-fg transition-colors group-hover:text-primary">
-                  {site.phone}
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </a>
+      <section className="py-14 md:py-16">
+        <div className="container-site grid gap-4 md:grid-cols-2">
           <Card>
-            <CardHeader>
-              <MapPin className="mb-2 h-5 w-5 text-primary" />
-              <CardTitle>Service area</CardTitle>
-              <CardDescription>
-                {site.location}
-                <br />
-                {site.address}
-              </CardDescription>
-            </CardHeader>
+            <CardContent className="space-y-4 p-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-primary-soft text-primary">
+                <Phone className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="font-semibold">Phone</h2>
+                <a
+                  href="tel:+19728771848"
+                  className="mt-1 block text-lg text-fg no-underline hover:text-primary"
+                >
+                  (972) 877-1848
+                </a>
+                <p className="mt-1 flex items-center gap-1.5 text-sm text-muted">
+                  <MessageSquare className="h-3.5 w-3.5" />
+                  Texting preferred
+                </p>
+              </div>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Button asChild>
+                  <a href="sms:+19728771848">Send a text</a>
+                </Button>
+                <Button asChild variant="secondary">
+                  <a href="tel:+19728771848">Call</a>
+                </Button>
+              </div>
+            </CardContent>
           </Card>
-          <a
-            href={site.youtube}
-            target="_blank"
-            rel="noreferrer"
-            className="group md:col-span-2"
-          >
-            <Card className="h-full hover:border-border-strong">
-              <CardHeader>
-                <Youtube className="mb-2 h-5 w-5 text-primary" />
-                <CardTitle>YouTube @rwkey</CardTitle>
-                <CardDescription className="text-fg transition-colors group-hover:text-primary">
-                  Visualizers, archives, and creative pipeline output
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </a>
-        </div>
 
-        <div className="panel shine-border mt-8 grid gap-6 rounded-2xl p-6 sm:grid-cols-[1.1fr_0.9fr] sm:p-8">
-          <div>
-            <div className="mb-2 inline-flex items-center gap-2 text-primary">
-              <IdCard className="h-4 w-4" />
-              <span className="font-mono text-[11px] font-semibold uppercase tracking-wider">
-                Business card
-              </span>
-            </div>
-            <h2 className="text-lg font-semibold text-fg">
-              One-sided magnetic print file
-            </h2>
-            <p className="mt-2 text-sm text-muted leading-relaxed">
-              Single face with legal name, contact, address, site, and YouTube —
-              sized for 3.5″ × 2″ cards with magnetic backs (no reverse side).
-              Download the PNG for the print shop, or open the HTML for
-              pixel-perfect print.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <a
-                href={cardSrc}
-                download="FAFO-PETRO-SERVICES-LLC-business-card.png"
-                className="inline-flex h-11 items-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg transition hover:brightness-110"
-              >
-                <Download className="h-4 w-4" />
-                Download PNG
-              </a>
-              <a
-                href="/business-card.html"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-4 text-sm font-medium text-fg transition hover:border-border-strong"
-              >
-                Open print layout
-              </a>
-            </div>
-          </div>
-          <a
-            href={cardSrc}
-            target="_blank"
-            rel="noreferrer"
-            className="overflow-hidden rounded-xl border border-border bg-bg-elevated"
-          >
-            <img
-              src={cardSrc}
-              alt={card?.alt || "FAFO PETRO SERVICES L.L.C. one-sided business card"}
-              className="h-full w-full object-cover"
-            />
-          </a>
-        </div>
+          <Card>
+            <CardContent className="space-y-4 p-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-primary-soft text-primary">
+                <Mail className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="font-semibold">Email</h2>
+                <a
+                  href="mailto:Rkey@FAFOPETRO.com"
+                  className="mt-1 block text-lg text-fg no-underline hover:text-primary break-all"
+                >
+                  Rkey@FAFOPETRO.com
+                </a>
+                <p className="mt-1 text-sm text-muted">
+                  Service, software support, and general inquiries
+                </p>
+              </div>
+              <Button asChild variant="secondary">
+                <a href="mailto:Rkey@FAFOPETRO.com">Open email</a>
+              </Button>
+            </CardContent>
+          </Card>
 
-        <div className="panel shine-border mt-8 rounded-2xl p-6 sm:p-8">
-          <h2 className="text-lg font-semibold text-fg">
-            Service application tips
-          </h2>
-          <ul className="mt-4 space-y-2 text-sm text-muted">
-            <li>Site name and city</li>
-            <li>Equipment brand / model if known (dispenser, POS, ATG)</li>
-            <li>What you're seeing (error, downtime, concrete issue)</li>
-            <li>Best callback number and windows</li>
-          </ul>
-          <p className="mt-6 text-sm text-subtle">
-            {site.legalName} · founded {site.founded} by {site.founder}.
-            Independent operator — competitive pricing, real field experience.
-            Extension support for Local Media / Ultimate Tab / Progen also
-            welcome at the same inbox.
-          </p>
+          <Card className="md:col-span-2">
+            <CardContent className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-primary-soft text-primary">
+                  <MapPin className="h-5 w-5" />
+                </div>
+                <div>
+                  <h2 className="font-semibold">Location</h2>
+                  <p className="mt-1 text-muted leading-relaxed">
+                    FAFO Petro Services LLC
+                    <br />
+                    1787 W 3rd St
+                    <br />
+                    Siler City, NC 27344
+                  </p>
+                  <p className="mt-2 text-sm text-subtle">
+                    Serving the Triad and surrounding North Carolina areas
+                  </p>
+                </div>
+              </div>
+              <Button asChild size="lg">
+                <Link to="/request">
+                  Request service
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
-      </Section>
-    </>
+      </section>
+    </div>
   );
 }

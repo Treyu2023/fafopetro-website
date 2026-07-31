@@ -2,18 +2,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-medium tracking-wide",
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
   {
     variants: {
       variant: {
-        default: "border-primary/30 bg-primary/10 text-primary",
-        secondary: "border-border bg-surface-2 text-muted",
-        outline: "border-border text-muted",
-        success: "border-success/30 bg-success/10 text-success",
-        warn: "border-warn/30 bg-warn/10 text-warn",
+        default:
+          "border-primary/30 bg-primary-soft text-primary shadow-[0_0_16px_color-mix(in_oklab,var(--color-primary)_25%,transparent)]",
+        secondary: "border-border bg-surface/80 text-muted backdrop-blur-sm",
+        outline: "border-border-strong text-muted",
       },
     },
-    defaultVariants: { variant: "default" },
+    defaultVariants: {
+      variant: "default",
+    },
   },
 );
 
@@ -22,5 +23,7 @@ export function Badge({
   variant,
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof badgeVariants>) {
-  return <div className={cn(badgeVariants({ variant }), className)} {...props} />;
+  return (
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+  );
 }

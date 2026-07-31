@@ -10,51 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AccountRouteImport } from './routes/account'
-import { Route as AdminAccessRouteImport } from './routes/admin-access'
-import { Route as AdminMediaRouteImport } from './routes/admin-media'
-import { Route as AdminPartsRouteImport } from './routes/admin-parts'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CreativeRouteImport } from './routes/creative'
-import { Route as FieldToolsRouteImport } from './routes/field-tools'
-import { Route as FunRouteImport } from './routes/fun'
-import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as LeadsRouteImport } from './routes/leads'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as RequestRouteImport } from './routes/request'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as SitesRouteImport } from './routes/sites'
-import { Route as SitesReviewRouteImport } from './routes/sites-review'
-import { Route as SumranRouteImport } from './routes/sumran'
-import { Route as ToolboxRouteImport } from './routes/toolbox'
-import { Route as SitesSiteIdRouteImport } from './routes/sites_.$siteId'
-import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
-import { Route as ApiToolboxLoginRouteImport } from './routes/api/toolbox/login'
-import { Route as ApiToolboxVerifyRouteImport } from './routes/api/toolbox/verify'
+import { Route as SoftwareRouteImport } from './routes/software'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AccountRoute = AccountRouteImport.update({
-  id: '/account',
-  path: '/account',
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminAccessRoute = AdminAccessRouteImport.update({
-  id: '/admin-access',
-  path: '/admin-access',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminMediaRoute = AdminMediaRouteImport.update({
-  id: '/admin-media',
-  path: '/admin-media',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminPartsRoute = AdminPartsRouteImport.update({
-  id: '/admin-parts',
-  path: '/admin-parts',
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -62,39 +38,9 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CreativeRoute = CreativeRouteImport.update({
-  id: '/creative',
-  path: '/creative',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FieldToolsRoute = FieldToolsRouteImport.update({
-  id: '/field-tools',
-  path: '/field-tools',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FunRoute = FunRouteImport.update({
-  id: '/fun',
-  path: '/fun',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalleryRoute = GalleryRouteImport.update({
-  id: '/gallery',
-  path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LeadsRoute = LeadsRouteImport.update({
-  id: '/leads',
-  path: '/leads',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const QuoteRoute = QuoteRouteImport.update({
-  id: '/quote',
-  path: '/quote',
+const RequestRoute = RequestRouteImport.update({
+  id: '/request',
+  path: '/request',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -102,218 +48,90 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitesRoute = SitesRouteImport.update({
-  id: '/sites',
-  path: '/sites',
+const SoftwareRoute = SoftwareRouteImport.update({
+  id: '/software',
+  path: '/software',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitesReviewRoute = SitesReviewRouteImport.update({
-  id: '/sites-review',
-  path: '/sites-review',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SumranRoute = SumranRouteImport.update({
-  id: '/sumran',
-  path: '/sumran',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ToolboxRoute = ToolboxRouteImport.update({
-  id: '/toolbox',
-  path: '/toolbox',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitesSiteIdRoute = SitesSiteIdRouteImport.update({
-  id: '/sites_/$siteId',
-  path: '/sites/$siteId',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
-  id: '/api/auth/$',
-  path: '/api/auth/$',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiToolboxLoginRoute = ApiToolboxLoginRouteImport.update({
-  id: '/api/toolbox/login',
-  path: '/api/toolbox/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiToolboxVerifyRoute = ApiToolboxVerifyRouteImport.update({
-  id: '/api/toolbox/verify',
-  path: '/api/toolbox/verify',
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/account': typeof AccountRoute
-  '/admin-access': typeof AdminAccessRoute
-  '/admin-media': typeof AdminMediaRoute
-  '/admin-parts': typeof AdminPartsRoute
+  '/about': typeof AboutRoute
+  '/ai': typeof AiRoute
   '/contact': typeof ContactRoute
-  '/creative': typeof CreativeRoute
-  '/field-tools': typeof FieldToolsRoute
-  '/fun': typeof FunRoute
-  '/gallery': typeof GalleryRoute
-  '/leads': typeof LeadsRoute
-  '/login': typeof LoginRoute
-  '/quote': typeof QuoteRoute
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
-  '/sites': typeof SitesRoute
-  '/sites-review': typeof SitesReviewRoute
-  '/sumran': typeof SumranRoute
-  '/toolbox': typeof ToolboxRoute
-  '/sites/$siteId': typeof SitesSiteIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/toolbox/login': typeof ApiToolboxLoginRoute
-  '/api/toolbox/verify': typeof ApiToolboxVerifyRoute
+  '/software': typeof SoftwareRoute
+  '/admin/leads': typeof AdminLeadsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/account': typeof AccountRoute
-  '/admin-access': typeof AdminAccessRoute
-  '/admin-media': typeof AdminMediaRoute
-  '/admin-parts': typeof AdminPartsRoute
+  '/about': typeof AboutRoute
+  '/ai': typeof AiRoute
   '/contact': typeof ContactRoute
-  '/creative': typeof CreativeRoute
-  '/field-tools': typeof FieldToolsRoute
-  '/fun': typeof FunRoute
-  '/gallery': typeof GalleryRoute
-  '/leads': typeof LeadsRoute
-  '/login': typeof LoginRoute
-  '/quote': typeof QuoteRoute
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
-  '/sites': typeof SitesRoute
-  '/sites-review': typeof SitesReviewRoute
-  '/sumran': typeof SumranRoute
-  '/toolbox': typeof ToolboxRoute
-  '/sites/$siteId': typeof SitesSiteIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/toolbox/login': typeof ApiToolboxLoginRoute
-  '/api/toolbox/verify': typeof ApiToolboxVerifyRoute
+  '/software': typeof SoftwareRoute
+  '/admin/leads': typeof AdminLeadsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/account': typeof AccountRoute
-  '/admin-access': typeof AdminAccessRoute
-  '/admin-media': typeof AdminMediaRoute
-  '/admin-parts': typeof AdminPartsRoute
+  '/about': typeof AboutRoute
+  '/ai': typeof AiRoute
   '/contact': typeof ContactRoute
-  '/creative': typeof CreativeRoute
-  '/field-tools': typeof FieldToolsRoute
-  '/fun': typeof FunRoute
-  '/gallery': typeof GalleryRoute
-  '/leads': typeof LeadsRoute
-  '/login': typeof LoginRoute
-  '/quote': typeof QuoteRoute
+  '/request': typeof RequestRoute
   '/services': typeof ServicesRoute
-  '/sites': typeof SitesRoute
-  '/sites-review': typeof SitesReviewRoute
-  '/sumran': typeof SumranRoute
-  '/toolbox': typeof ToolboxRoute
-  '/sites_/$siteId': typeof SitesSiteIdRoute
-  '/api/auth/$': typeof ApiAuthSplatRoute
-  '/api/toolbox/login': typeof ApiToolboxLoginRoute
-  '/api/toolbox/verify': typeof ApiToolboxVerifyRoute
+  '/software': typeof SoftwareRoute
+  '/admin/leads': typeof AdminLeadsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/account'
-    | '/admin-access'
-    | '/admin-media'
-    | '/admin-parts'
+    | '/about'
+    | '/ai'
     | '/contact'
-    | '/creative'
-    | '/field-tools'
-    | '/fun'
-    | '/gallery'
-    | '/leads'
-    | '/login'
-    | '/quote'
+    | '/request'
     | '/services'
-    | '/sites'
-    | '/sites-review'
-    | '/sumran'
-    | '/toolbox'
-    | '/sites/$siteId'
-    | '/api/auth/$'
-    | '/api/toolbox/login'
-    | '/api/toolbox/verify'
+    | '/software'
+    | '/admin/leads'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/account'
-    | '/admin-access'
-    | '/admin-media'
-    | '/admin-parts'
+    | '/about'
+    | '/ai'
     | '/contact'
-    | '/creative'
-    | '/field-tools'
-    | '/fun'
-    | '/gallery'
-    | '/leads'
-    | '/login'
-    | '/quote'
+    | '/request'
     | '/services'
-    | '/sites'
-    | '/sites-review'
-    | '/sumran'
-    | '/toolbox'
-    | '/sites/$siteId'
-    | '/api/auth/$'
-    | '/api/toolbox/login'
-    | '/api/toolbox/verify'
+    | '/software'
+    | '/admin/leads'
   id:
     | '__root__'
     | '/'
-    | '/account'
-    | '/admin-access'
-    | '/admin-media'
-    | '/admin-parts'
+    | '/about'
+    | '/ai'
     | '/contact'
-    | '/creative'
-    | '/field-tools'
-    | '/fun'
-    | '/gallery'
-    | '/leads'
-    | '/login'
-    | '/quote'
+    | '/request'
     | '/services'
-    | '/sites'
-    | '/sites-review'
-    | '/sumran'
-    | '/toolbox'
-    | '/sites_/$siteId'
-    | '/api/auth/$'
-    | '/api/toolbox/login'
-    | '/api/toolbox/verify'
+    | '/software'
+    | '/admin/leads'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AccountRoute: typeof AccountRoute
-  AdminAccessRoute: typeof AdminAccessRoute
-  AdminMediaRoute: typeof AdminMediaRoute
-  AdminPartsRoute: typeof AdminPartsRoute
+  AboutRoute: typeof AboutRoute
+  AiRoute: typeof AiRoute
   ContactRoute: typeof ContactRoute
-  CreativeRoute: typeof CreativeRoute
-  FieldToolsRoute: typeof FieldToolsRoute
-  FunRoute: typeof FunRoute
-  GalleryRoute: typeof GalleryRoute
-  LeadsRoute: typeof LeadsRoute
-  LoginRoute: typeof LoginRoute
-  QuoteRoute: typeof QuoteRoute
+  RequestRoute: typeof RequestRoute
   ServicesRoute: typeof ServicesRoute
-  SitesRoute: typeof SitesRoute
-  SitesReviewRoute: typeof SitesReviewRoute
-  SumranRoute: typeof SumranRoute
-  ToolboxRoute: typeof ToolboxRoute
-  SitesSiteIdRoute: typeof SitesSiteIdRoute
-  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
-  ApiToolboxLoginRoute: typeof ApiToolboxLoginRoute
-  ApiToolboxVerifyRoute: typeof ApiToolboxVerifyRoute
+  SoftwareRoute: typeof SoftwareRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -325,32 +143,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/account': {
-      id: '/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AccountRouteImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin-access': {
-      id: '/admin-access'
-      path: '/admin-access'
-      fullPath: '/admin-access'
-      preLoaderRoute: typeof AdminAccessRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-media': {
-      id: '/admin-media'
-      path: '/admin-media'
-      fullPath: '/admin-media'
-      preLoaderRoute: typeof AdminMediaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin-parts': {
-      id: '/admin-parts'
-      path: '/admin-parts'
-      fullPath: '/admin-parts'
-      preLoaderRoute: typeof AdminPartsRouteImport
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -360,53 +164,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/creative': {
-      id: '/creative'
-      path: '/creative'
-      fullPath: '/creative'
-      preLoaderRoute: typeof CreativeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/field-tools': {
-      id: '/field-tools'
-      path: '/field-tools'
-      fullPath: '/field-tools'
-      preLoaderRoute: typeof FieldToolsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/fun': {
-      id: '/fun'
-      path: '/fun'
-      fullPath: '/fun'
-      preLoaderRoute: typeof FunRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gallery': {
-      id: '/gallery'
-      path: '/gallery'
-      fullPath: '/gallery'
-      preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/leads': {
-      id: '/leads'
-      path: '/leads'
-      fullPath: '/leads'
-      preLoaderRoute: typeof LeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/quote': {
-      id: '/quote'
-      path: '/quote'
-      fullPath: '/quote'
-      preLoaderRoute: typeof QuoteRouteImport
+    '/request': {
+      id: '/request'
+      path: '/request'
+      fullPath: '/request'
+      preLoaderRoute: typeof RequestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -416,60 +178,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sites': {
-      id: '/sites'
-      path: '/sites'
-      fullPath: '/sites'
-      preLoaderRoute: typeof SitesRouteImport
+    '/software': {
+      id: '/software'
+      path: '/software'
+      fullPath: '/software'
+      preLoaderRoute: typeof SoftwareRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sites-review': {
-      id: '/sites-review'
-      path: '/sites-review'
-      fullPath: '/sites-review'
-      preLoaderRoute: typeof SitesReviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sumran': {
-      id: '/sumran'
-      path: '/sumran'
-      fullPath: '/sumran'
-      preLoaderRoute: typeof SumranRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/toolbox': {
-      id: '/toolbox'
-      path: '/toolbox'
-      fullPath: '/toolbox'
-      preLoaderRoute: typeof ToolboxRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sites_/$siteId': {
-      id: '/sites_/$siteId'
-      path: '/sites/$siteId'
-      fullPath: '/sites/$siteId'
-      preLoaderRoute: typeof SitesSiteIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/auth/$': {
-      id: '/api/auth/$'
-      path: '/api/auth/$'
-      fullPath: '/api/auth/$'
-      preLoaderRoute: typeof ApiAuthSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/toolbox/login': {
-      id: '/api/toolbox/login'
-      path: '/api/toolbox/login'
-      fullPath: '/api/toolbox/login'
-      preLoaderRoute: typeof ApiToolboxLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/toolbox/verify': {
-      id: '/api/toolbox/verify'
-      path: '/api/toolbox/verify'
-      fullPath: '/api/toolbox/verify'
-      preLoaderRoute: typeof ApiToolboxVerifyRouteImport
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -477,27 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AccountRoute: AccountRoute,
-  AdminAccessRoute: AdminAccessRoute,
-  AdminMediaRoute: AdminMediaRoute,
-  AdminPartsRoute: AdminPartsRoute,
+  AboutRoute: AboutRoute,
+  AiRoute: AiRoute,
   ContactRoute: ContactRoute,
-  CreativeRoute: CreativeRoute,
-  FieldToolsRoute: FieldToolsRoute,
-  FunRoute: FunRoute,
-  GalleryRoute: GalleryRoute,
-  LeadsRoute: LeadsRoute,
-  LoginRoute: LoginRoute,
-  QuoteRoute: QuoteRoute,
+  RequestRoute: RequestRoute,
   ServicesRoute: ServicesRoute,
-  SitesRoute: SitesRoute,
-  SitesReviewRoute: SitesReviewRoute,
-  SumranRoute: SumranRoute,
-  ToolboxRoute: ToolboxRoute,
-  SitesSiteIdRoute: SitesSiteIdRoute,
-  ApiAuthSplatRoute: ApiAuthSplatRoute,
-  ApiToolboxLoginRoute: ApiToolboxLoginRoute,
-  ApiToolboxVerifyRoute: ApiToolboxVerifyRoute,
+  SoftwareRoute: SoftwareRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
