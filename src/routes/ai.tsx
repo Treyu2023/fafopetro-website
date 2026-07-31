@@ -166,6 +166,49 @@ function AiShowcasePage() {
         </div>
       </section>
 
+      {/* Real gallery from your kit */}
+      <section className="border-b border-primary/10 py-14 md:py-16">
+        <div className="container-site">
+          <div className="mb-8 max-w-2xl">
+            <SignHeading accent="Your kit">Work you already made</SignHeading>
+            <p className="mt-3 text-sm text-muted leading-relaxed">
+              Logos, power-ups, drops — the same art that already represents FAFO.
+              This is the nerd showcase customers can feel.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ["/media/brand/fafo-logo-primary.png", "Primary logo"],
+              ["/media/brand/fafo-unchained.png", "Unchained pumpjack"],
+              ["/media/brand/fafo-drop-logo.png", "Drop logo"],
+              ["/media/brand/fafo-drop-red.png", "Red drop"],
+              ["/media/ai/power-gold.jpeg", "Power profile"],
+              ["/media/ai/power-mono.png", "Mono power"],
+              ["/media/ai/portrait-glow.png", "Portrait study"],
+              ["/media/ai/energy-blue.png", "Energy study"],
+              ["/media/ai/drop-space.png", "Drop in space"],
+            ].map(([src, label]) => (
+              <figure
+                key={src}
+                className="lit-panel group overflow-hidden rounded-[var(--radius-xl)]"
+              >
+                <div className="relative z-[1] aspect-square overflow-hidden bg-black/40">
+                  <img
+                    src={src}
+                    alt={label}
+                    className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption className="relative z-[1] border-t border-border px-3 py-2 font-condensed text-xs font-bold uppercase tracking-[0.16em] text-muted">
+                  {label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Ideas playground */}
       <section className="border-b border-primary/10 py-14 md:py-16">
         <div className="container-site max-w-3xl">

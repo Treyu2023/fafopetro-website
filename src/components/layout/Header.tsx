@@ -28,7 +28,7 @@ export function Header() {
           onClick={() => setOpen(false)}
           aria-label="FAFO Petro Services home"
         >
-          <BrandMark size="sm" />
+          <BrandMark size="sm" useLogoMark />
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">

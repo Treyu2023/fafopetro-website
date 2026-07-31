@@ -227,6 +227,24 @@ function ServicesPage() {
             </p>
           </div>
           <TravelZoneMap includeOnboarding />
+          <div className="lit-panel overflow-hidden rounded-[var(--radius-xl)]">
+            <div className="relative z-[1] border-b border-border px-5 py-3 md:px-6">
+              <p className="font-condensed text-xs font-bold uppercase tracking-[0.22em] text-primary">
+                Your area map
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                Siler City home base with zone rings and key markets (Greensboro, Raleigh,
+                Charlotte, Fayetteville). Interactive quote tool above — this map is the
+                big-picture view you already use.
+              </p>
+            </div>
+            <img
+              src="/media/maps/service-area-map.png"
+              alt="FAFO Petro service area map centered on Siler City, North Carolina"
+              className="relative z-[1] w-full h-auto"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 

@@ -36,6 +36,25 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="border-b border-primary/10 py-10">
+        <div className="container-site">
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="lit-panel flex items-center justify-center rounded-[var(--radius-xl)] p-6">
+              <img src="/media/brand/fafo-logo-primary.png" alt="FAFO Petro Services primary logo" className="max-h-40 w-auto object-contain" />
+            </div>
+            <div className="lit-panel flex items-center justify-center rounded-[var(--radius-xl)] p-4">
+              <img src="/media/brand/fafo-unchained.png" alt="FAFO Petro unchained pumpjack mark" className="max-h-48 w-auto object-contain" />
+            </div>
+            <div className="lit-panel flex items-center justify-center rounded-[var(--radius-xl)] bg-black/40 p-6">
+              <img src="/media/brand/fafo-drop-logo.png" alt="FAFO drop character logo" className="max-h-40 w-auto object-contain" />
+            </div>
+          </div>
+          <p className="mt-4 text-center text-xs text-subtle">
+            Brand kit — primary pumpjack, unchained mark (&ldquo;Forged Autonomy&rdquo;), and drop logo.
+          </p>
+        </div>
+      </section>
+
       <section className="py-14 md:py-16">
         <div className="container-site grid gap-4 md:grid-cols-3">
           <Card>

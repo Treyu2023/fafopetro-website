@@ -67,7 +67,17 @@ const reasons = [
 function HomePage() {
   return (
     <div>
-      <section className="relative overflow-hidden border-b border-primary/10 grid-bg">
+      <section className="relative overflow-hidden border-b border-primary/10">
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden="true"
+          style={{
+            backgroundImage:
+              "linear-gradient(105deg, color-mix(in oklab, #06080c 88%, transparent) 0%, color-mix(in oklab, #06080c 55%, transparent) 48%, color-mix(in oklab, #06080c 75%, transparent) 100%), url(/media/brand/fafo-hero-station.jpg)",
+            backgroundSize: "cover",
+            backgroundPosition: "center 40%",
+          }}
+        />
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-90"
           aria-hidden="true"
@@ -101,7 +111,7 @@ function HomePage() {
               </span>
             </div>
 
-            <BrandMark size="hero" showTagline />
+            <BrandMark size="hero" showTagline useLogoMark />
 
             <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-muted sm:text-xl">
               Conveniently located to serve the{" "}
