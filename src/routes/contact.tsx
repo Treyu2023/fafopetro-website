@@ -183,7 +183,7 @@ function ContactPage() {
           <ul className="mt-4 space-y-2 text-sm text-muted">
             <li>Site name and city</li>
             <li>Equipment brand / model if known (dispenser, POS, ATG)</li>
-            <li>What you're seeing (error, downtime, concrete issue)</li>
+            <li>What you're seeing (error, downtime, symptoms)</li>
             <li>Best callback number and windows</li>
           </ul>
           <p className="mt-6 text-sm text-subtle">

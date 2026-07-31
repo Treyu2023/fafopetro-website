@@ -3,7 +3,7 @@ import { Section, SectionHeading } from "@/components/Section";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { services, site } from "@/data/site";
-import { CheckCircle2, Fuel, HardHat, MonitorSmartphone, Package } from "lucide-react";
+import { CheckCircle2, Fuel, MonitorSmartphone, Package } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   component: ServicesPage,
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/services")({
   }),
 });
 
-const icons = [Fuel, MonitorSmartphone, HardHat, Package];
+const icons = [Fuel, MonitorSmartphone, Package];
 
 function ServicesPage() {
   return (
@@ -20,7 +20,7 @@ function ServicesPage() {
       <Section className="pb-8 pt-14">
         <Badge className="mb-4">Field service</Badge>
         <SectionHeading
-          title="Dispensers, POS, ATG, and site concrete."
+          title="Dispensers, POS, and ATG service."
           description="Independent C-store equipment service with clear scopes, competitive pricing, and boots-on-ground experience — not a call-center dispatch queue."
         />
       </Section>
@@ -54,9 +54,9 @@ function ServicesPage() {
             "Detailed scopes with realistic time buffers",
             "Experience across Gilbarco, Wayne, Verifone ecosystems",
             "Veeder-Root TLS-450 configuration familiarity",
-            "Concrete repairs with rebar and 4000 PSI standards",
             "Based in Siler City — Triad & surrounding NC",
             "Text-first communication for field speed",
+            "Transparent labor and mileage rates on the quote tool",
           ].map((item) => (
             <li
               key={item}

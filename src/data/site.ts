@@ -113,10 +113,6 @@ export const services = [
     body: "Veeder-Root TLS-450 configuration, phase separation floats, compliance-minded setup, and ongoing monitor support.",
   },
   {
-    title: "Concrete & Site Repairs",
-    body: "Gas station concrete repairs including manhole replacements with rebar and 4000 PSI pours, scoped with buffers and clear pricing.",
-  },
-  {
     title: "Parts & Equipment Resale",
     body: "Sourcing and resale of field-proven equipment such as Gilbarco/Verifone EMV card readers for operators who need gear that works.",
   },
