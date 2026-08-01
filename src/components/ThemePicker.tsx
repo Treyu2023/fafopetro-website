@@ -138,7 +138,7 @@ export function ThemePicker() {
           <div className="border-t border-border bg-bg-elevated/80 px-4 py-2.5">
             <p className="text-[11px] text-subtle">
               Active: <span className="font-medium text-muted">{theme.name}</span>
-              {" · "}Tell us which ones to keep as permanent options.
+              {" · "}Each theme has its own particles, delay trails, and pointer warp.
             </p>
           </div>
         </div>

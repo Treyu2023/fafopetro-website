@@ -25,7 +25,7 @@ export const THEMES: ThemeDef[] = [
   {
     id: "amber-field",
     name: "Amber Field",
-    tagline: "Current brand — charcoal shop floor + fuel amber",
+    tagline: "Charcoal shop + fuel amber · embers & heat ghosts",
     mode: "dark",
     swatches: {
       bg: "#070809",
@@ -37,7 +37,7 @@ export const THEMES: ThemeDef[] = [
   {
     id: "hi-vis",
     name: "Hi-Vis Ops",
-    tagline: "Cool slate nights + safety orange — jobsite ready",
+    tagline: "Safety orange + cyan · sparks & flash trails",
     mode: "dark",
     swatches: {
       bg: "#0a0c10",
@@ -49,7 +49,7 @@ export const THEMES: ThemeDef[] = [
   {
     id: "daylight",
     name: "Daylight Pro",
-    tagline: "Clean light brochure — navy primary, crisp paper",
+    tagline: "Crisp paper light · soft motes & calm warp",
     mode: "light",
     swatches: {
       bg: "#f5f6f8",
@@ -61,7 +61,7 @@ export const THEMES: ThemeDef[] = [
   {
     id: "pipeline",
     name: "Steel Pipeline",
-    tagline: "Near-black tech — restrained steel blue",
+    tagline: "Near-black steel · chips & chromatic ghosts",
     mode: "dark",
     swatches: {
       bg: "#060708",
@@ -73,7 +73,7 @@ export const THEMES: ThemeDef[] = [
   {
     id: "sandstone",
     name: "Sandstone",
-    tagline: "Warm NC paper + terracotta — southern contractor",
+    tagline: "NC paper + terracotta · dust storm drift",
     mode: "light",
     swatches: {
       bg: "#f7f2ea",

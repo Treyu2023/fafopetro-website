@@ -13,6 +13,7 @@ type Particle = {
   color: string;
   spin: number;
   kind: "core" | "ghost" | "burst";
+  /** chromatic offset for steel ghosts */
   chroma?: number;
 };
 
@@ -79,6 +80,10 @@ function spawnParticle(
   };
 }
 
+/**
+ * Full-viewport canvas FX driven by the active theme.
+ * pointer-events: none — never steals clicks from ThemePicker / UI.
+ */
 export function PointerFx() {
   const { themeId } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -94,8 +99,11 @@ export function PointerFx() {
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
     if (reduced) {
-      canvas.width = 0;
-      canvas.height = 0;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        canvas.width = 0;
+        canvas.height = 0;
+      }
       return;
     }
 
@@ -143,7 +151,8 @@ export function PointerFx() {
       pointer.y = e.clientY;
       pointer.active = true;
       const fx = getThemeFx(themeIdRef.current);
-      for (let i = 0; i < fx.burst; i++) {
+      const n = fx.burst;
+      for (let i = 0; i < n; i++) {
         if (particles.length >= fx.maxParticles) particles.shift();
         particles.push(spawnParticle(e.clientX, e.clientY, fx, "burst"));
       }
@@ -162,6 +171,7 @@ export function PointerFx() {
       lastT = now;
       const fx = getThemeFx(themeIdRef.current);
 
+      // ambient spawn
       ambientAcc += fx.ambientRate * dt;
       while (ambientAcc >= 1) {
         ambientAcc -= 1;
@@ -172,6 +182,7 @@ export function PointerFx() {
         }
       }
 
+      // move spawn + delayed ghosts
       if (pointer.active) {
         const dx = pointer.x - lastMove.x;
         const dy = pointer.y - lastMove.y;
@@ -182,7 +193,12 @@ export function PointerFx() {
             moveAcc -= 1;
             if (particles.length < fx.maxParticles) {
               particles.push(
-                spawnParticle(pointer.x + rand(-6, 6), pointer.y + rand(-6, 6), fx, "core"),
+                spawnParticle(
+                  pointer.x + rand(-6, 6),
+                  pointer.y + rand(-6, 6),
+                  fx,
+                  "core",
+                ),
               );
             }
           }
@@ -190,6 +206,7 @@ export function PointerFx() {
         lastMove.x = pointer.x;
         lastMove.y = pointer.y;
 
+        // delayed trail ghosts
         const targetT = now - fx.trailDelayMs;
         for (let i = 0; i < fx.trailCount; i++) {
           const lookback = targetT - i * (fx.trailDelayMs / Math.max(fx.trailCount, 1));
@@ -209,6 +226,7 @@ export function PointerFx() {
         }
       }
 
+      // physics
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i]!;
         p.life += dt;
@@ -217,6 +235,7 @@ export function PointerFx() {
           continue;
         }
 
+        // proximity warp — push particles near pointer
         if (pointer.active && fx.warpStrength > 0) {
           const wx = p.x - pointer.x;
           const wy = p.y - pointer.y;
@@ -231,8 +250,12 @@ export function PointerFx() {
 
         p.vx += fx.windX * dt * 10;
         p.vy += (fx.gravity + fx.windY) * dt * 60;
-        if (fx.style === "dust") p.vx += Math.sin(now * 0.002 + p.y * 0.01) * 0.04;
-        if (fx.style === "embers") p.vx += Math.sin(now * 0.003 + p.y * 0.02) * 0.03;
+        if (fx.style === "dust") {
+          p.vx += Math.sin(now * 0.002 + p.y * 0.01) * 0.04;
+        }
+        if (fx.style === "embers") {
+          p.vx += Math.sin(now * 0.003 + p.y * 0.02) * 0.03;
+        }
 
         p.x += p.vx;
         p.y += p.vy;
@@ -244,12 +267,26 @@ export function PointerFx() {
         }
       }
 
+      // draw
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = fx.additive ? "lighter" : "source-over";
 
+      if (fx.additive) {
+        ctx.globalCompositeOperation = "lighter";
+      } else {
+        ctx.globalCompositeOperation = "source-over";
+      }
+
+      // soft proximity glow / warp ring
       if (pointer.active) {
+        const g = ctx.createRadialGradient(
+          pointer.x,
+          pointer.y,
+          0,
+          pointer.x,
+          pointer.y,
+          fx.warpRadius,
+        );
         const c0 = fx.colors[0] ?? "#fff";
-        const g = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, fx.warpRadius);
         g.addColorStop(0, withAlpha(c0, 0.14));
         g.addColorStop(0.45, withAlpha(c0, 0.05));
         g.addColorStop(1, withAlpha(c0, 0));
@@ -257,10 +294,18 @@ export function PointerFx() {
         ctx.beginPath();
         ctx.arc(pointer.x, pointer.y, fx.warpRadius, 0, Math.PI * 2);
         ctx.fill();
+
+        // outer warp ring
         ctx.strokeStyle = withAlpha(c0, 0.2);
         ctx.lineWidth = 1.25;
         ctx.beginPath();
-        ctx.arc(pointer.x, pointer.y, fx.warpRadius * (0.72 + Math.sin(now * 0.006) * 0.04), 0, Math.PI * 2);
+        ctx.arc(
+          pointer.x,
+          pointer.y,
+          fx.warpRadius * (0.72 + Math.sin(now * 0.006) * 0.04),
+          0,
+          Math.PI * 2,
+        );
         ctx.stroke();
       }
 
@@ -270,6 +315,7 @@ export function PointerFx() {
         const size = p.size * (1 - t * 0.35);
 
         if (p.chroma && p.chroma > 0) {
+          // chromatic ghost (pipeline)
           ctx.fillStyle = withAlpha("#38bdf8", alpha * 0.5);
           ctx.beginPath();
           ctx.arc(p.x - p.chroma, p.y, size, 0, Math.PI * 2);
@@ -288,6 +334,9 @@ export function PointerFx() {
           ctx.rotate(Math.atan2(p.vy, p.vx));
           ctx.fillRect(-size * 2, -size * 0.35, size * 4, size * 0.7);
           ctx.restore();
+        } else if (fx.style === "dust") {
+          ctx.arc(p.x, p.y, size * (0.6 + Math.random() * 0.05), 0, Math.PI * 2);
+          ctx.fill();
         } else {
           ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
           ctx.fill();

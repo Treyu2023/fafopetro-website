@@ -3,6 +3,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemePicker } from "@/components/ThemePicker";
+import { PointerFx } from "@/components/PointerFx";
 import appCss from "@/styles.css?url";
 import { site } from "@/data/site";
 
@@ -51,6 +52,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <SiteFooter />
+          <PointerFx />
           <ThemePicker />
         </ThemeProvider>
         <Scripts />

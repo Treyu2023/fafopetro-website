@@ -277,3 +277,21 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* ── Pointer / theme FX canvas (PointerFx) ───────────────────────── */
+.pointer-fx-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  pointer-events: none;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pointer-fx-canvas {
+    display: none !important;
+  }
+}
