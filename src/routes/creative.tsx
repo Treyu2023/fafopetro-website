@@ -3,7 +3,7 @@ import { Section, SectionHeading } from "@/components/Section";
 import { ExplainerSteps } from "@/components/Explainer";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { creativePipeline, site } from "@/data/site";
+import { creativePipeline, neonNinjaProfiles, site } from "@/data/site";
 import { MediaSlot, useMediaSlots } from "@/components/MediaSlot";
 import {
   Film,
@@ -15,6 +15,7 @@ import {
   Workflow,
   Sparkles,
   Upload,
+  ExternalLink,
 } from "lucide-react";
 
 export const Route = createFileRoute("/creative")({
@@ -73,10 +74,10 @@ function CreativePage() {
   return (
     <>
       <Section className="pb-8 pt-14">
-        <Badge className="mb-4">Creative studio</Badge>
+        <Badge className="mb-4">Creative studio · Neon Ninja</Badge>
         <SectionHeading
           title="Music videos from blank project to social release."
-          description="End-to-end workflow: write the track, run AI inference for the picture, cut hard in the editor, upscale to 4K, then ship the final cut. Open a step below when you want the detail — home page stays plain language."
+          description="End-to-end workflow under Neon Ninja: write the track on Suno (Moodtuning), run AI inference for the picture, cut hard in the editor, upscale to 4K, then ship the final cut."
         />
         <div className="flex flex-wrap gap-3">
           <a
@@ -86,7 +87,7 @@ function CreativePage() {
             className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg hover:border-border-strong"
           >
             <Youtube className="h-4 w-4 text-primary" />
-            YouTube @rwkey
+            YouTube {site.youtubeHandle}
           </a>
           <a
             href={site.youtubePlaylist}
@@ -95,8 +96,59 @@ function CreativePage() {
             className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg hover:border-border-strong"
           >
             <Film className="h-4 w-4 text-primary" />
-            Visualizer playlist
+            Masterpiece Theater playlist
           </a>
+          <a
+            href={site.social.suno}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg hover:border-border-strong"
+          >
+            <Music className="h-4 w-4 text-primary" />
+            Suno @moodtuning
+          </a>
+        </div>
+      </Section>
+
+      <Section className="pt-0">
+        <SectionHeading
+          eyebrow="Find Neon Ninja"
+          title="All public profiles in one place."
+          description="YouTube channel, Masterpiece Theater playlist, Suno Moodtuning, X, and GitHub — with profile images so you can spot the right page fast. Facebook, Instagram, LinkedIn, and CivitAI slots are ready when those URLs are set."
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {neonNinjaProfiles.map((p) => (
+            <a
+              key={p.id}
+              href={p.href}
+              target="_blank"
+              rel="noreferrer"
+              className="group panel shine-border overflow-hidden rounded-2xl transition hover:border-border-strong"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-surface-2">
+                <img
+                  src={p.image}
+                  alt={`${p.name} on ${p.platform}`}
+                  className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/80">
+                    {p.platform}
+                  </p>
+                  <p className="text-sm font-semibold text-white">{p.name}</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-mono text-xs text-primary">{p.handle}</p>
+                  <ExternalLink className="h-3.5 w-3.5 text-subtle group-hover:text-fg" />
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{p.blurb}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </Section>
 
@@ -118,9 +170,10 @@ function CreativePage() {
                 </div>
                 <CardTitle>1 · Write & generate the music</CardTitle>
                 <CardDescription>
-                  Start with the song. Structure, hooks, and a master mix that
-                  the picture will lock to — synthwave, chillstep, dark pop,
-                  political anthems, trip-hop / bass, visualizer-ready pieces.
+                  Start on Suno under <strong className="text-fg">@moodtuning</strong>{" "}
+                  (Neon Ninja). Structure, hooks, and a master mix the picture locks
+                  to — synthwave, chillstep, dark pop, political anthems, trip-hop /
+                  bass, visualizer-ready pieces.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -158,9 +211,9 @@ function CreativePage() {
                 <CardTitle>4 · Upscale to 4K</CardTitle>
                 <CardDescription>
                   Push the finished edit through AI upscaling and frame
-                  interpolation so the master is <strong className="text-fg">4K</strong>{" "}
-                  and motion stays dense before social platforms crush the file.
-                  Export platform-safe frame rates after the master is built.
+                  interpolation so the master is{" "}
+                  <strong className="text-fg">4K</strong> and motion stays dense
+                  before social platforms crush the file.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -171,9 +224,10 @@ function CreativePage() {
                 </div>
                 <CardTitle>5 · Final cut & social release</CardTitle>
                 <CardDescription>
-                  Final export per platform, publish to YouTube @rwkey and
-                  socials, archive masters, and note what worked for the next
-                  project (and the tools that feed it).
+                  Final export per platform, publish to YouTube{" "}
+                  <strong className="text-fg">{site.youtubeHandle}</strong> and the
+                  socials below, archive masters, and note what worked for the next
+                  project.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -243,8 +297,8 @@ function CreativePage() {
           </Card>
         </div>
         <p className="mt-8 text-sm text-subtle">
-          Full visualizer archives live on YouTube. This page documents the
-          workflow that makes them.
+          Full visualizer archives live on YouTube {site.youtubeHandle}. This page
+          documents the workflow that makes them.
         </p>
       </Section>
     </>

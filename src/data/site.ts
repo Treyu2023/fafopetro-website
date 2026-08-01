@@ -13,9 +13,13 @@ export const site = {
   location: "Siler City, NC — serving the Triad & surrounding areas",
   address: "1787 W 3rd St, Siler City, NC 27344",
   website: "https://www.fafopetro.com",
-  youtube: "https://youtube.com/@rwkey",
+  /** Neon Ninja creative channel (music videos + AI workflow) */
+  youtube: "https://youtube.com/@NN_RWK",
+  youtubeHandle: "@NN_RWK",
   youtubePlaylist:
     "https://youtube.com/playlist?list=PLRXJjFjIfW-kiC809xPcM3X6ZRohe_Rh3",
+  youtubeAvatar:
+    "https://yt3.googleusercontent.com/XPLdgeT2qBwuFm37auEC-Us8T-Pz3SxM9i9N8rgUgwhVlNJrwGdKEwi2HayqoKO83EU8cN6-yyc",
   /** Chrome Web Store — published Local Media listing */
   chromeLocalMedia:
     "https://chromewebstore.google.com/detail/phdfnpaigllbkdjfflapdmcapkapolpe",
@@ -56,39 +60,107 @@ export const site = {
 
   /**
    * Public social / presence links.
-   * Empty string = not shown. No X/Twitter by design.
-   * Paste full profile URLs when ready (Facebook, Instagram, LinkedIn, etc.).
+   * Empty string = not shown.
+   * Paste full profile URLs when ready for Facebook, Instagram, LinkedIn, CivitAI.
    */
   social: {
-    youtube: "https://youtube.com/@rwkey",
+    youtube: "https://youtube.com/@NN_RWK",
+    suno: "https://suno.com/@moodtuning",
+    x: "https://x.com/RKey2024",
     github: "https://github.com/Treyu2023",
     facebook: "",
     instagram: "",
     linkedin: "",
-    /** e.g. Invideo, portfolio, or other creator hub — paste full URL when ready */
-    ivitai: "",
+    civitai: "",
   } as {
     youtube: string;
+    suno: string;
+    x: string;
     github: string;
     facebook: string;
     instagram: string;
     linkedin: string;
-    ivitai: string;
+    civitai: string;
   },
 };
 
-/** Only links with a real URL — used by footer / contact. No X/Twitter. */
+/** Only links with a real URL — used by footer / contact / creative. */
 export const publicSocials = () =>
   (
     [
-      { id: "youtube", label: "YouTube", href: site.social.youtube },
+      { id: "youtube", label: "YouTube · Neon Ninja", href: site.social.youtube },
+      { id: "suno", label: "Suno · Moodtuning", href: site.social.suno },
+      { id: "x", label: "X · @RKey2024", href: site.social.x },
       { id: "github", label: "GitHub", href: site.social.github },
       { id: "facebook", label: "Facebook", href: site.social.facebook },
       { id: "instagram", label: "Instagram", href: site.social.instagram },
       { id: "linkedin", label: "LinkedIn", href: site.social.linkedin },
-      { id: "ivitai", label: "Ivitai", href: site.social.ivitai },
+      { id: "civitai", label: "CivitAI", href: site.social.civitai },
     ] as const
   ).filter((s) => Boolean(s.href && s.href.trim()));
+
+/** Creative / Neon Ninja presence cards (images + links) for the Creative page. */
+export const neonNinjaProfiles = [
+  {
+    id: "youtube",
+    platform: "YouTube",
+    name: "Neon Ninja",
+    handle: "@NN_RWK",
+    href: "https://youtube.com/@NN_RWK",
+    blurb:
+      "AI music videos, SUNO tracks, Grok Imagine visuals, CapCut edits, and 4K upscaled releases.",
+    image:
+      "https://yt3.googleusercontent.com/XPLdgeT2qBwuFm37auEC-Us8T-Pz3SxM9i9N8rgUgwhVlNJrwGdKEwi2HayqoKO83EU8cN6-yyc",
+    accent: "#ff0033",
+  },
+  {
+    id: "playlist",
+    platform: "YouTube Playlist",
+    name: "Masterpiece Theater",
+    handle: "SUNO AI Songs & AI Art",
+    href: "https://youtube.com/playlist?list=PLRXJjFjIfW-kiC809xPcM3X6ZRohe_Rh3",
+    blurb:
+      "Growing archive of original songs synced to AI art video clips — the main public release feed.",
+    image:
+      "https://i.ytimg.com/vi/Uq_4nC3wKks/hqdefault.jpg",
+    accent: "#ff0033",
+  },
+  {
+    id: "suno",
+    platform: "Suno",
+    name: "Neon Ninja",
+    handle: "@moodtuning",
+    href: "https://suno.com/@moodtuning",
+    blurb:
+      "Moodtuning on Suno — original AI music, playlists, and personas. Full library often ships to YouTube when Suno length limits hit.",
+    image:
+      "https://yt3.googleusercontent.com/XPLdgeT2qBwuFm37auEC-Us8T-Pz3SxM9i9N8rgUgwhVlNJrwGdKEwi2HayqoKO83EU8cN6-yyc",
+    accent: "#a78bfa",
+  },
+  {
+    id: "x",
+    platform: "X",
+    name: "Ryan Key",
+    handle: "@RKey2024",
+    href: "https://x.com/RKey2024",
+    blurb:
+      "Field tech · AI · tools · notes from the road. Personal presence for FAFO and Neon Ninja.",
+    image:
+      "https://pbs.twimg.com/profile_images/1829384725531701250/zlgMYhKn.jpg",
+    accent: "#e7e9ea",
+  },
+  {
+    id: "github",
+    platform: "GitHub",
+    name: "Treyu2023",
+    handle: "@Treyu2023",
+    href: "https://github.com/Treyu2023",
+    blurb:
+      "FAFO Chrome extensions, Power Toolbox, Local Media, Progen, and the public website source.",
+    image: "https://github.com/Treyu2023.png",
+    accent: "#e8a317",
+  },
+] as const;
 
 export const nav = [
   { to: "/", label: "Home" },
