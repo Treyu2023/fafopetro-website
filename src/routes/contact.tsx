@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, SectionHeading } from "@/components/Section";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,12 +33,12 @@ function ContactPage() {
           title="Text first. Email for longer scopes."
           description={`Service applications, site issues, toolbox / Local Media feedback, and creative collabs for ${site.legalName}. Need a price first? Use the service call calculator — $65/hr, $0.75/mi one-way.`}
         />
-        <a
-          href="/quote"
+        <Link
+          to="/quote"
           className="mt-4 inline-flex h-11 items-center rounded-xl bg-primary px-5 text-sm font-semibold text-primary-fg"
         >
           Open service call calculator
-        </a>
+        </Link>
       </Section>
 
       {socials.length ? (
@@ -117,9 +117,9 @@ function ContactPage() {
             <Card className="h-full hover:border-border-strong">
               <CardHeader>
                 <Youtube className="mb-2 h-5 w-5 text-primary" />
-                <CardTitle>YouTube @rwkey</CardTitle>
+                <CardTitle>YouTube {site.youtubeHandle}</CardTitle>
                 <CardDescription className="text-fg transition-colors group-hover:text-primary">
-                  Visualizers, archives, and creative pipeline output
+                  Neon Ninja — visualizers, archives, and creative pipeline output
                 </CardDescription>
               </CardHeader>
             </Card>

@@ -44,55 +44,54 @@ function ToolboxPage() {
                 </span>
               </div>
               <h2 className="text-lg font-semibold tracking-tight text-fg">
-                GitHub + direct zips — better than Drive for shipping apps.
+                On-site zips first — GitHub when repos are public.
               </h2>
               <p className="mt-2 max-w-2xl text-sm text-muted leading-relaxed">
-                Versioned Releases, source history, and one-click zips beat a
-                shared Drive folder. Grab a zip below (or from GitHub Releases),
-                unzip, then Load unpacked in{" "}
+                Prefer the direct downloads below (hosted with this site). GitHub
+                Releases and source links need the extension / toolbox repos set
+                to <strong className="text-fg">public</strong> for visitors without
+                a GitHub login. Unzip, then Load unpacked in{" "}
                 <code className="rounded bg-bg-elevated px-1.5 py-0.5 text-xs text-fg">
                   chrome://extensions
                 </code>
                 . Chrome Web Store stays available for Local Media when you want
-                store install. For public visitors, make the GitHub repos public
-                (they’re private today) so Release links work without login.
+                store install.
               </p>
             </div>
             <div className="flex shrink-0 flex-col gap-2">
               <a
-                href={site.releaseExtensions}
-                target="_blank"
-                rel="noreferrer"
+                href={site.downloadLocalMedia}
+                download
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg transition hover:brightness-110"
               >
-                <Github className="h-4 w-4" />
-                Extensions Release
+                <Download className="h-4 w-4" />
+                Local Media 7.3.1
               </a>
               <a
-                href={site.releaseToolbox}
+                href={site.chromeLocalMedia}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-surface px-4 text-sm font-medium text-fg transition hover:border-border-strong"
               >
-                <Server className="h-4 w-4" />
-                Toolbox Release
+                <ExternalLink className="h-4 w-4" />
+                Chrome Web Store
               </a>
             </div>
           </div>
           <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                label: "Local Media 7.3.0",
+                label: "Local Media 7.3.1",
                 href: site.downloadLocalMedia,
               },
               {
-                label: "Local Media full 7.3.0",
+                label: "Local Media (same build)",
                 href: site.downloadUltimateTab,
               },
               { label: "Progen", href: site.downloadProgen },
               { label: "Power Toolbox", href: site.downloadToolbox },
             ].map((item) => (
-              <li key={item.href}>
+              <li key={item.label + item.href}>
                 <a
                   href={item.href}
                   download
@@ -104,6 +103,26 @@ function ToolboxPage() {
               </li>
             ))}
           </ul>
+          <p className="mt-4 text-xs text-subtle">
+            Optional GitHub (login may be required while repos are private):{" "}
+            <a
+              href={site.releaseExtensions}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted underline-offset-2 hover:text-fg hover:underline"
+            >
+              Extensions Release v7.3.1
+            </a>
+            {" · "}
+            <a
+              href={site.githubOrg}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted underline-offset-2 hover:text-fg hover:underline"
+            >
+              github.com/Treyu2023
+            </a>
+          </p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -236,9 +255,9 @@ function ToolboxPage() {
 
       <Section className="border-t border-border bg-bg-elevated/40">
         <SectionHeading
-          eyebrow="Local Media 7.3"
+          eyebrow="Local Media 7.3.1"
           title="Unleash the NutKracken."
-          description="New Tab becomes a local AI media player with tags, smart dupes, and pairs. Download 7.3.0, unzip, Load unpacked → FAFO Local Media LOAD THIS. Chrome may re-ask for folder access after updates."
+          description="New Tab becomes a local AI media player with tags, smart dupes, and pairs. Download 7.3.1, unzip, Load unpacked → FAFO Local Media LOAD THIS. Chrome may re-ask for folder access after updates."
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[
@@ -252,7 +271,7 @@ function ToolboxPage() {
             },
             {
               title: "Tags & smart dupes",
-              body: "100-char hard cap. AI prompt dumps in file comments are scrubbed and no longer auto-paint every video. Chips scroll instead of filling the screen.",
+              body: "100-char hard cap. AI prompt dumps in file comments are scrubbed and no longer auto-paint every video. Progressive Grok-id pairing for Before/After libraries.",
             },
           ].map((c) => (
             <Card key={c.title}>
