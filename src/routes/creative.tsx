@@ -114,7 +114,7 @@ function CreativePage() {
         <SectionHeading
           eyebrow="Find Neon Ninja"
           title="All public profiles in one place."
-          description="YouTube channel, Masterpiece Theater playlist, Suno Moodtuning, X, and GitHub — with profile images so you can spot the right page fast. Facebook, Instagram, LinkedIn, and CivitAI slots are ready when those URLs are set."
+          description="YouTube, Masterpiece Theater playlist, Suno Moodtuning, X, LinkedIn, and GitHub — with profile images so you can spot the right page fast. Facebook, Instagram, and CivitAI still open if you send those URLs."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {neonNinjaProfiles.map((p) => (

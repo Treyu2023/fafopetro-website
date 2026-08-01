@@ -61,25 +61,25 @@ export const site = {
   /**
    * Public social / presence links.
    * Empty string = not shown.
-   * Paste full profile URLs when ready for Facebook, Instagram, LinkedIn, CivitAI.
+   * Paste full profile URLs when ready for Facebook, Instagram, CivitAI.
    */
   social: {
     youtube: "https://youtube.com/@NN_RWK",
     suno: "https://suno.com/@moodtuning",
     x: "https://x.com/RKey2024",
     github: "https://github.com/Treyu2023",
+    linkedin: "https://www.linkedin.com/in/ryan-key-149934135",
     facebook: "",
     instagram: "",
-    linkedin: "",
     civitai: "",
   } as {
     youtube: string;
     suno: string;
     x: string;
     github: string;
+    linkedin: string;
     facebook: string;
     instagram: string;
-    linkedin: string;
     civitai: string;
   },
 };
@@ -92,9 +92,9 @@ export const publicSocials = () =>
       { id: "suno", label: "Suno · Moodtuning", href: site.social.suno },
       { id: "x", label: "X · @RKey2024", href: site.social.x },
       { id: "github", label: "GitHub", href: site.social.github },
+      { id: "linkedin", label: "LinkedIn", href: site.social.linkedin },
       { id: "facebook", label: "Facebook", href: site.social.facebook },
       { id: "instagram", label: "Instagram", href: site.social.instagram },
-      { id: "linkedin", label: "LinkedIn", href: site.social.linkedin },
       { id: "civitai", label: "CivitAI", href: site.social.civitai },
     ] as const
   ).filter((s) => Boolean(s.href && s.href.trim()));
@@ -121,8 +121,7 @@ export const neonNinjaProfiles = [
     href: "https://youtube.com/playlist?list=PLRXJjFjIfW-kiC809xPcM3X6ZRohe_Rh3",
     blurb:
       "Growing archive of original songs synced to AI art video clips — the main public release feed.",
-    image:
-      "https://i.ytimg.com/vi/Uq_4nC3wKks/hqdefault.jpg",
+    image: "https://i.ytimg.com/vi/Uq_4nC3wKks/hqdefault.jpg",
     accent: "#ff0033",
   },
   {
@@ -148,6 +147,18 @@ export const neonNinjaProfiles = [
     image:
       "https://pbs.twimg.com/profile_images/1829384725531701250/zlgMYhKn.jpg",
     accent: "#e7e9ea",
+  },
+  {
+    id: "linkedin",
+    platform: "LinkedIn",
+    name: "Ryan Key",
+    handle: "ryan-key-149934135",
+    href: "https://www.linkedin.com/in/ryan-key-149934135",
+    blurb:
+      "Professional profile — field service background, FAFO Petro Services, and industry work.",
+    image:
+      "https://pbs.twimg.com/profile_images/1829384725531701250/zlgMYhKn.jpg",
+    accent: "#0a66c2",
   },
   {
     id: "github",
