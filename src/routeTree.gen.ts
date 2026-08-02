@@ -21,6 +21,7 @@ import { Route as FunRouteImport } from './routes/fun'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as LeadsRouteImport } from './routes/leads'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MusicRouteImport } from './routes/music'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitesRouteImport } from './routes/sites'
@@ -92,6 +93,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MusicRoute = MusicRouteImport.update({
+  id: '/music',
+  path: '/music',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuoteRoute = QuoteRouteImport.update({
   id: '/quote',
   path: '/quote',
@@ -156,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/leads': typeof LeadsRoute
   '/login': typeof LoginRoute
+  '/music': typeof MusicRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sites': typeof SitesRoute
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/leads': typeof LeadsRoute
   '/login': typeof LoginRoute
+  '/music': typeof MusicRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sites': typeof SitesRoute
@@ -205,6 +213,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/leads': typeof LeadsRoute
   '/login': typeof LoginRoute
+  '/music': typeof MusicRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
   '/sites': typeof SitesRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leads'
     | '/login'
+    | '/music'
     | '/quote'
     | '/services'
     | '/sites'
@@ -255,6 +265,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leads'
     | '/login'
+    | '/music'
     | '/quote'
     | '/services'
     | '/sites'
@@ -279,6 +290,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/leads'
     | '/login'
+    | '/music'
     | '/quote'
     | '/services'
     | '/sites'
@@ -304,6 +316,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   LeadsRoute: typeof LeadsRoute
   LoginRoute: typeof LoginRoute
+  MusicRoute: typeof MusicRoute
   QuoteRoute: typeof QuoteRoute
   ServicesRoute: typeof ServicesRoute
   SitesRoute: typeof SitesRoute
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/music': {
+      id: '/music'
+      path: '/music'
+      fullPath: '/music'
+      preLoaderRoute: typeof MusicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quote': {
       id: '/quote'
       path: '/quote'
@@ -488,6 +508,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   LeadsRoute: LeadsRoute,
   LoginRoute: LoginRoute,
+  MusicRoute: MusicRoute,
   QuoteRoute: QuoteRoute,
   ServicesRoute: ServicesRoute,
   SitesRoute: SitesRoute,
