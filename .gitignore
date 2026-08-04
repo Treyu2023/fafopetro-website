@@ -12,3 +12,4 @@ dist
 /tmp
 screenshots
 tmp-ext
+.env*
