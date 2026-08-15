@@ -19,6 +19,10 @@ npm run typecheck
 **Production alias (until DNS cutover):** https://fafopetro-web.vercel.app  
 **Keep Google Sites on fafopetro.com until this URL shows the real app (not Vercel `NOT_FOUND`).**
 
+Vercel Git integration on `main` is the live deploy path. The Actions workflow is optional (needs `VERCEL_TOKEN` / org / project secrets) and skips cleanly when those are empty.
+
+Current download hub: Ultimate Tab **6.4.68**, Local Media **7.3.1**, Power Toolbox **1.11.8**.
+
 ### Zero-config contract
 
 | Setting | Value |

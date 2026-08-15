@@ -43,7 +43,7 @@ function HomePage() {
     {
       icon: Cpu,
       title: "Toolbox",
-      body: "Local Media, Progen, Power Toolbox downloads.",
+      body: "Ultimate Tab, Local Media, Progen, Power Toolbox downloads.",
       to: "/toolbox",
     },
     {
@@ -174,7 +174,7 @@ function HomePage() {
                 From the vault
               </p>
               <p className="mt-0.5 text-xs text-muted">
-                Swap these stills anytime from Media admin — live, no redeploy.
+                Neon Ninja stills and field nights — the look of the brand.
               </p>
             </div>
           </div>

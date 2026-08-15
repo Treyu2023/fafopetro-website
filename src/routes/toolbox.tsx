@@ -30,8 +30,8 @@ function ToolboxPage() {
       <Section className="pb-8 pt-14">
         <Badge className="mb-4">FAFO Toolbox</Badge>
         <SectionHeading
-          title="Explainoramas for every tool that powers the brand."
-          description="Progen, Local Media, Ultimate Tab, Architect, Power Toolbox, and Commander — built for creators and field operators who want control without surrendering data to a black box."
+          title="Downloads, explainers, and the tools behind the brand."
+          description="Ultimate Tab, Local Media, Progen, Architect, Power Toolbox, and Commander — built for creators and field operators who want control without surrendering data to a black box."
         />
 
         <div className="panel shine-border mb-8 rounded-2xl p-5 sm:p-6">
@@ -44,52 +44,55 @@ function ToolboxPage() {
                 </span>
               </div>
               <h2 className="text-lg font-semibold tracking-tight text-fg">
-                On-site zips first — GitHub when repos are public.
+                Grab the latest zips — hosted right here.
               </h2>
               <p className="mt-2 max-w-2xl text-sm text-muted leading-relaxed">
-                Prefer the direct downloads below (hosted with this site). GitHub
-                Releases and source links need the extension / toolbox repos set
-                to <strong className="text-fg">public</strong> for visitors without
-                a GitHub login. Unzip, then Load unpacked in{" "}
+                Direct downloads below. Chrome extensions unzip, then Load
+                unpacked in{" "}
                 <code className="rounded bg-bg-elevated px-1.5 py-0.5 text-xs text-fg">
                   chrome://extensions
                 </code>
-                . Chrome Web Store stays available for Local Media when you want
-                store install.
+                . Power Toolbox is a local desktop install (run SETUP once).
+                Chrome Web Store stays available for Local Media when you want
+                store install. Ultimate Tab {site.versions.ultimateTab} and
+                Power Toolbox {site.versions.toolbox} ship 56 CSS tessellation
+                tiles for backgrounds, cards, and wallpaper presets.
               </p>
             </div>
             <div className="flex shrink-0 flex-col gap-2">
               <a
-                href={site.downloadLocalMedia}
+                href={site.downloadUltimateTab}
                 download
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-primary-fg transition hover:brightness-110"
               >
                 <Download className="h-4 w-4" />
-                Local Media 7.3.1
+                Ultimate Tab {site.versions.ultimateTab}
               </a>
               <a
-                href={site.chromeLocalMedia}
-                target="_blank"
-                rel="noreferrer"
+                href={site.downloadToolbox}
+                download
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-surface px-4 text-sm font-medium text-fg transition hover:border-border-strong"
               >
-                <ExternalLink className="h-4 w-4" />
-                Chrome Web Store
+                <Download className="h-4 w-4" />
+                Power Toolbox {site.versions.toolbox}
               </a>
             </div>
           </div>
           <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
-                label: "Local Media 7.3.1",
-                href: site.downloadLocalMedia,
-              },
-              {
-                label: "Local Media (same build)",
+                label: `Ultimate Tab ${site.versions.ultimateTab}`,
                 href: site.downloadUltimateTab,
               },
+              {
+                label: `Local Media ${site.versions.localMedia}`,
+                href: site.downloadLocalMedia,
+              },
               { label: "Progen", href: site.downloadProgen },
-              { label: "Power Toolbox", href: site.downloadToolbox },
+              {
+                label: `Power Toolbox ${site.versions.toolbox}`,
+                href: site.downloadToolbox,
+              },
             ].map((item) => (
               <li key={item.label + item.href}>
                 <a
@@ -104,23 +107,32 @@ function ToolboxPage() {
             ))}
           </ul>
           <p className="mt-4 text-xs text-subtle">
-            Optional GitHub (login may be required while repos are private):{" "}
+            GitHub (extensions repo is private — use the on-site zips):{" "}
             <a
               href={site.releaseExtensions}
               target="_blank"
               rel="noreferrer"
               className="text-muted underline-offset-2 hover:text-fg hover:underline"
             >
-              Extensions Release v7.3.1
+              Ultimate Tab v{site.versions.ultimateTab}
             </a>
             {" · "}
             <a
-              href={site.githubOrg}
+              href={site.releaseToolbox}
               target="_blank"
               rel="noreferrer"
               className="text-muted underline-offset-2 hover:text-fg hover:underline"
             >
-              github.com/Treyu2023
+              Toolbox v{site.versions.toolbox}
+            </a>
+            {" · "}
+            <a
+              href={site.chromeLocalMedia}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted underline-offset-2 hover:text-fg hover:underline"
+            >
+              Chrome Web Store
             </a>
           </p>
         </div>
@@ -255,9 +267,9 @@ function ToolboxPage() {
 
       <Section className="border-t border-border bg-bg-elevated/40">
         <SectionHeading
-          eyebrow="Local Media 7.3.1"
+          eyebrow={`Local Media ${site.versions.localMedia}`}
           title="Unleash the NutKracken."
-          description="New Tab becomes a local AI media player with tags, smart dupes, and pairs. Download 7.3.1, unzip, Load unpacked → FAFO Local Media LOAD THIS. Chrome may re-ask for folder access after updates."
+          description={`New Tab becomes a local AI media player with tags, smart dupes, and pairs. Download ${site.versions.localMedia} from the Store or zip, unzip, Load unpacked → FAFO Local Media LOAD THIS. Chrome may re-ask for folder access after updates.`}
         />
         <div className="grid gap-4 md:grid-cols-3">
           {[

@@ -3,5 +3,14 @@
   "framework": "tanstack-start",
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
-  "regions": ["iad1"]
+  "regions": ["iad1"],
+  "headers": [
+    {
+      "source": "/downloads/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" },
+        { "key": "Content-Disposition", "value": "attachment" }
+      ]
+    }
+  ]
 }

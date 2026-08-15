@@ -47,7 +47,7 @@ function CreativeVideos() {
           <SectionHeading
             eyebrow="Showcase"
             title="Recent cuts"
-            description="Swap these from Media admin (YouTube or MP4 URLs)."
+            description="Recent Neon Ninja cuts — YouTube embeds and 4K masters from the release pipeline."
           />
           <div className="grid gap-4 md:grid-cols-3">
             {vids.map((v) => (

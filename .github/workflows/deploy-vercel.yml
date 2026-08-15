@@ -1,13 +1,8 @@
 # Auto-deploy when you push to main.
-# One-time setup (you do once in GitHub + Vercel, then Grok/I can keep updating via git push):
-#   1. https://vercel.com/new → Import Treyu2023/fafopetro-website → Deploy
-#   2. Vercel → Project → Settings → Environment Variables (optional DATABASE_URL)
-#   3. Vercel → Account Settings → Tokens → Create → copy token
-#   4. GitHub repo → Settings → Secrets and variables → Actions → New repository secret:
-#        Name: VERCEL_TOKEN          Value: (token from step 3)
-#        Name: VERCEL_ORG_ID         Value: (Vercel → Project → Settings → General → Team/User ID)
-#        Name: VERCEL_PROJECT_ID     Value: (same page → Project ID)
-#   After that, every push to main deploys automatically.
+# Preferred path: Vercel Git integration on this repo (fafopetro-web project).
+# Optional CLI path (this workflow): set repo Actions secrets VERCEL_TOKEN,
+# VERCEL_ORG_ID, VERCEL_PROJECT_ID. Without those secrets the job is skipped
+# cleanly so the check stays green — Vercel still deploys from the Git hook.
 
 name: Deploy to Vercel
 
@@ -43,3 +38,12 @@ jobs:
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  skip-notice:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VERCEL_TOKEN == '' }}
+    steps:
+      - name: Vercel Git integration owns production
+        run: |
+          echo "VERCEL_TOKEN is not set. Skipping CLI deploy."
+          echo "Production is https://fafopetro-web.vercel.app via Vercel Git integration on main."

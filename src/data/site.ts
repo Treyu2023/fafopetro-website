@@ -13,6 +13,8 @@ export const site = {
   location: "Siler City, NC — serving the Triad & surrounding areas",
   address: "1787 W 3rd St, Siler City, NC 27344",
   website: "https://www.fafopetro.com",
+  /** Production alias until DNS cutover from Google Sites. */
+  vercelUrl: "https://fafopetro-web.vercel.app",
   /** Neon Ninja creative channel (music videos + AI workflow) */
   youtube: "https://youtube.com/@NN_RWK",
   youtubeHandle: "@NN_RWK",
@@ -36,22 +38,28 @@ export const site = {
   githubToolbox: "https://github.com/Treyu2023/FAFO-Power-Toolbox",
   /** GitHub Releases (zip installs) */
   releaseExtensions:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/tag/v7.3.1",
+    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/tag/v6.4.68",
   releaseUltimateTabZip:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/download/v7.3.1/FAFO-Local-Media-7.3.1.zip",
+    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/download/v6.4.68/FAFO-Ultimate-Tab-6.4.68.zip",
   releaseLocalMediaZip:
     "https://github.com/Treyu2023/fafo-chrome-extensions/releases/download/v7.3.1/FAFO-Local-Media-7.3.1.zip",
   releaseProgenZip:
     "https://github.com/Treyu2023/fafo-chrome-extensions/releases/tag/v7.3.1",
   releaseToolbox:
-    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/tag/v1.0.0-tagfix",
+    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/tag/v1.11.8",
   releaseToolboxZip:
-    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/download/v1.0.0-tagfix/FAFO-Power-Toolbox.zip",
+    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/download/v1.11.8/FAFO-Power-Toolbox-1.11.8.zip",
   /** On-site zip mirrors (same packages as Releases) */
   downloadLocalMedia: "/downloads/FAFO-Local-Media-7.3.1.zip",
-  downloadUltimateTab: "/downloads/FAFO-Local-Media-7.3.1.zip",
+  downloadUltimateTab: "/downloads/FAFO-Ultimate-Tab-6.4.68.zip",
   downloadProgen: "/downloads/FAFO-Progen.zip",
-  downloadToolbox: "/downloads/FAFO-Power-Toolbox.zip",
+  downloadToolbox: "/downloads/FAFO-Power-Toolbox-1.11.8.zip",
+  versions: {
+    localMedia: "7.3.1",
+    ultimateTab: "6.4.68",
+    toolbox: "1.11.8",
+    architect: "15.1",
+  },
   /** Drive fallbacks */
   driveSampleMedia:
     "https://drive.google.com/open?id=1_srvtfS2_7cwmIn3jXdRIDOLOgB43B-c&usp=drive_fs",
@@ -203,6 +211,48 @@ export const services = [
 
 export const toolboxFeatures = [
   {
+    id: "ultimate-tab",
+    name: "FAFO Ultimate Tab",
+    tag: `Chrome new-tab · ${site.versions.ultimateTab}`,
+    summary:
+      "Cinematic new-tab media center: opaque tag DB, private vaults, playlists, FX — plus 56 CSS tessellation tiles for backgrounds, cards, chips, and wallpaper presets.",
+    points: [
+      "56 paint-program tessellation tiles (stripes, bricks, girih stars, hex, herringbone) with live color + scale",
+      "Eight wallpaper presets — apply a full tiled look in one click",
+      "Private vaults, playlists, and an opaque tag database that stays on-device",
+      "Unzip and Load unpacked → FAFO Ultimate Tab in chrome://extensions",
+    ],
+    links: [
+      {
+        label: `Download Ultimate Tab ${site.versions.ultimateTab}`,
+        href: site.downloadUltimateTab,
+        primary: true,
+      },
+      { label: "GitHub Release", href: site.releaseExtensions },
+    ],
+  },
+  {
+    id: "local-media",
+    name: "FAFO Local Media",
+    tag: `Chrome Web Store · ${site.versions.localMedia}`,
+    summary:
+      "Store-listed local-first media library: folders, tags, pairs, before/after, search, and browser-native speed without shipping your vault to someone else’s cloud.",
+    points: [
+      "Watch folders, tags, search across large local libraries",
+      "Before/after pairs and review queue for upscale workflows",
+      "100-char tag cap and cleaner AI-comment scrubbing",
+      "Chrome Web Store listing plus full local zip for advanced tools",
+    ],
+    links: [
+      {
+        label: `Download Local Media ${site.versions.localMedia}`,
+        href: site.downloadLocalMedia,
+        primary: true,
+      },
+      { label: "Chrome Web Store", href: site.chromeLocalMedia },
+    ],
+  },
+  {
     id: "progen",
     name: "FAFO Progen Reimagined",
     tag: "Chrome Extension / PWA",
@@ -224,46 +274,25 @@ export const toolboxFeatures = [
     ],
   },
   {
-    id: "local-media",
-    name: "FAFO Local Media",
-    tag: "Chrome new-tab / library",
-    summary:
-      "Local-first media library: folders, tags, pairs, before/after, search, and browser-native speed without shipping your vault to someone else’s cloud.",
-    points: [
-      "Watch folders, tags, search across large local libraries",
-      "Before/after pairs and review queue for upscale workflows",
-      "100-char tag cap and cleaner AI-comment scrubbing",
-      "Chrome Web Store listing plus full local zip for advanced tools",
-    ],
-    links: [
-      {
-        label: "Download Local Media zip",
-        href: site.downloadLocalMedia,
-        primary: true,
-      },
-      { label: "Chrome Web Store", href: site.chromeLocalMedia },
-      { label: "GitHub Releases", href: site.releaseExtensions },
-    ],
-  },
-  {
     id: "power-toolbox",
     name: "FAFO Power Toolbox",
-    tag: "Local desktop toolbox",
+    tag: `Local desktop · ${site.versions.toolbox}`,
     summary:
-      "Work hub for field techs: Verifone tools, site/customer DB hooks, brand sections, gated manuals — whole toolbox login-gated for approved accounts.",
+      "Work hub for field techs: Verifone tools, site/customer DB hooks, brand sections, gated manuals — plus tiled AppGrid, wallpaper, and theme live-preview from the same 56-pattern catalog as Ultimate Tab.",
     points: [
       "Work section: Verifone, Sites, Gilbarco, Veeder-Root, Wayne, Manuals",
+      "Tiled AppGrid + wallpaper + theme live preview (56 CSS tessellations, 8 presets)",
       "Full toolbox login — website account with approved toolbox access",
-      "OEM manuals restricted to authorized techs only",
       "Local Python server for file ops, media, and field tools",
     ],
     links: [
       {
-        label: "Download Power Toolbox zip",
+        label: `Download Power Toolbox ${site.versions.toolbox}`,
         href: site.downloadToolbox,
         primary: true,
       },
       { label: "GitHub repo", href: site.githubToolbox },
+      { label: `Release v${site.versions.toolbox}`, href: site.releaseToolbox },
     ],
   },
 ];
