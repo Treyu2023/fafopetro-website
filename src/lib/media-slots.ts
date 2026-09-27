@@ -24,7 +24,7 @@ export const adminListMediaSlots = createServerFn({ method: "POST" })
     const { MEDIA_ADMIN_CODE, resolveAllSlots } = await import(
       "@/lib/media-slots-core.server"
     );
-    if (data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
+    if (!MEDIA_ADMIN_CODE() || data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     const slots = await resolveAllSlots();
@@ -58,7 +58,7 @@ export const adminSaveMediaSlot = createServerFn({ method: "POST" })
     const { MEDIA_ADMIN_CODE, upsertSlot } = await import(
       "@/lib/media-slots-core.server"
     );
-    if (data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
+    if (!MEDIA_ADMIN_CODE() || data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     if (!data.key) throw new Error("key required");
@@ -91,7 +91,7 @@ export const adminResetMediaSlot = createServerFn({ method: "POST" })
     const { MEDIA_ADMIN_CODE, resetSlot } = await import(
       "@/lib/media-slots-core.server"
     );
-    if (data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
+    if (!MEDIA_ADMIN_CODE() || data.code.trim().toUpperCase() !== MEDIA_ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     if (!data.key) throw new Error("key required");

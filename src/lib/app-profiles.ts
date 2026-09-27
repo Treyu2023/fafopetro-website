@@ -55,7 +55,7 @@ export const listToolboxRequests = createServerFn({ method: "POST" })
     const { ADMIN_CODE, ensureTables } = await import(
       "@/lib/app-profiles-core.server"
     );
-    if (data.code.trim().toUpperCase() !== ADMIN_CODE()) {
+    if (!ADMIN_CODE() || data.code.trim().toUpperCase() !== ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     const sql = await ensureTables();
@@ -82,7 +82,7 @@ export const setToolboxAccess = createServerFn({ method: "POST" })
     const { ADMIN_CODE, ensureTables } = await import(
       "@/lib/app-profiles-core.server"
     );
-    if (data.code.trim().toUpperCase() !== ADMIN_CODE()) {
+    if (!ADMIN_CODE() || data.code.trim().toUpperCase() !== ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     if (!data.userId) throw new Error("userId required");

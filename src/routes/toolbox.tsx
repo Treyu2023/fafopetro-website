@@ -107,18 +107,17 @@ function ToolboxPage() {
             ))}
           </ul>
           <p className="mt-4 text-xs text-subtle">
-            GitHub (extensions repo is private — use the on-site zips):{" "}
+            Ultimate Tab is the on-site zip. Power Toolbox is the current public
+            source tree:{" "}
             <a
-              href={site.releaseExtensions}
-              target="_blank"
-              rel="noreferrer"
+              href={site.downloadUltimateTab}
               className="text-muted underline-offset-2 hover:text-fg hover:underline"
             >
               Ultimate Tab v{site.versions.ultimateTab}
             </a>
             {" · "}
             <a
-              href={site.releaseToolbox}
+              href={site.releaseToolboxZip}
               target="_blank"
               rel="noreferrer"
               className="text-muted underline-offset-2 hover:text-fg hover:underline"

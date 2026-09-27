@@ -1,19 +1,15 @@
 /** Server-only profile / toolbox token logic. Do not import from client components. */
 import { randomBytes, createHash } from "node:crypto";
 import { getSql } from "@/lib/db";
+import { sitesAdminCode } from "@/lib/access-code";
 import type { AppProfile } from "@/lib/app-profiles-types";
 
 export type { AppProfile };
 
-export const ADMIN_CODE = () =>
-  (
-    process.env.SITES_ADMIN_CODE ||
-    process.env.QUOTE_LEADS_CODE ||
-    "FAFO-LEADS"
-  ).toUpperCase();
+export const ADMIN_CODE = (): string | null => sitesAdminCode();
 
 function bootstrapAdminEmails(): Set<string> {
-  const raw = process.env.FAFO_ADMIN_EMAILS || "rkey@fafopetro.com";
+  const raw = process.env.FAFO_ADMIN_EMAILS?.trim() ?? "";
   return new Set(
     raw
       .split(",")

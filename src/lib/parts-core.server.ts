@@ -1,6 +1,7 @@
 /** Private parts / price book — server only. Never expose via public pages. */
 import { randomBytes } from "node:crypto";
 import { getSql } from "@/lib/db";
+import { sitesAdminCode } from "@/lib/access-code";
 import type {
   PartPriceRow,
   PartRow,
@@ -9,12 +10,7 @@ import type {
   PriceType,
 } from "@/lib/parts-types";
 
-export const PARTS_ADMIN_CODE = () =>
-  (
-    process.env.SITES_ADMIN_CODE ||
-    process.env.QUOTE_LEADS_CODE ||
-    "FAFO-LEADS"
-  ).toUpperCase();
+export const PARTS_ADMIN_CODE = (): string | null => sitesAdminCode();
 
 function id() {
   return randomBytes(12).toString("hex");

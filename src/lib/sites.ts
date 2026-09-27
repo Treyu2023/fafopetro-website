@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getSql } from "@/lib/db";
+import { sitesAdminCode } from "@/lib/access-code";
 import stationsSeed from "@/data/stations-seed.json";
 import {
   computeCompleteness,
@@ -15,8 +16,7 @@ import type {
   SurveyContext,
 } from "@/lib/sites-types";
 
-const ADMIN_CODE = () =>
-  (process.env.SITES_ADMIN_CODE || process.env.QUOTE_LEADS_CODE || "FAFO-LEADS").toUpperCase();
+const ADMIN_CODE = (): string | null => sitesAdminCode();
 
 function newId(prefix: string) {
   return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
@@ -581,7 +581,7 @@ export const listPendingContributions = createServerFn({ method: "POST" })
     code: String((data as { code?: string })?.code || ""),
   }))
   .handler(async ({ data }): Promise<{ rows: ContributionRow[] }> => {
-    if (data.code.trim().toUpperCase() !== ADMIN_CODE()) {
+    if (!ADMIN_CODE() || data.code.trim().toUpperCase() !== ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     const sql = await ensureSitesTables();
@@ -625,7 +625,7 @@ export const reviewContribution = createServerFn({ method: "POST" })
     };
   })
   .handler(async ({ data }): Promise<{ ok: true }> => {
-    if (data.code.trim().toUpperCase() !== ADMIN_CODE()) {
+    if (!ADMIN_CODE() || data.code.trim().toUpperCase() !== ADMIN_CODE()) {
       throw new Error("Invalid access code");
     }
     const sql = await ensureSitesTables();

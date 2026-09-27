@@ -111,15 +111,13 @@ function HomePage() {
               >
                 Explore the toolbox
               </Link>
-              <a
-                href={site.githubExtensions}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/toolbox"
                 className="inline-flex h-12 items-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-medium text-muted transition hover:border-border-strong hover:text-fg"
               >
                 <Github className="h-4 w-4" />
                 Downloads
-              </a>
+              </Link>
             </div>
             <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-subtle">
               <span className="inline-flex items-center gap-1.5">

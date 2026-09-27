@@ -11,6 +11,7 @@ import {
 import { useCurrentUserState } from "@/lib/auth/use-current-user";
 import { syncMyProfile } from "@/lib/app-profiles";
 import { emailAndPasswordEnabled } from "@/lib/auth/email-password";
+import { getAuthUiConfig } from "@/lib/auth/ui-config";
 
 type LoginSearch = {
   next?: string;
@@ -18,6 +19,7 @@ type LoginSearch = {
 };
 
 export const Route = createFileRoute("/login")({
+  loader: () => getAuthUiConfig(),
   component: LoginPage,
   validateSearch: (s: Record<string, unknown>): LoginSearch => ({
     next: typeof s.next === "string" ? s.next : undefined,
@@ -40,6 +42,7 @@ function LoginPage() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
+  const { socialEnabled } = Route.useLoaderData();
   const { user, isPending } = useCurrentUserState();
 
   if (!isPending && user) {
@@ -106,32 +109,38 @@ function LoginPage() {
           <p className="mt-6 text-sm text-muted">Sign-in is disabled on this deploy.</p>
         ) : (
           <>
-            <div className="mt-6 space-y-2">
-              {GROK_PROVIDERS.map((p) => (
-                <button
-                  key={p.providerId}
-                  type="button"
-                  disabled={busy}
-                  onClick={() =>
-                    void signIn(p.providerId, {
-                      callbackURL: next,
-                      errorCallbackURL: "/login",
-                    })
-                  }
-                  className="flex h-11 w-full items-center justify-center rounded-xl border border-border bg-bg text-sm font-medium text-fg transition hover:border-border-strong"
-                >
-                  Continue with {p.label}
-                </button>
-              ))}
-            </div>
+            {socialEnabled ? (
+              <div className="mt-6 space-y-2">
+                {GROK_PROVIDERS.map((p) => (
+                  <button
+                    key={p.providerId}
+                    type="button"
+                    disabled={busy}
+                    onClick={() =>
+                      void signIn(p.providerId, {
+                        callbackURL: next,
+                        errorCallbackURL: "/login",
+                      })
+                    }
+                    className="flex h-11 w-full items-center justify-center rounded-xl border border-border bg-bg text-sm font-medium text-fg transition hover:border-border-strong"
+                  >
+                    Continue with {p.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
 
             {emailAndPasswordEnabled ? (
               <>
-                <div className="my-6 flex items-center gap-3 text-xs text-subtle">
-                  <div className="h-px flex-1 bg-border" />
-                  or email
-                  <div className="h-px flex-1 bg-border" />
-                </div>
+                {socialEnabled ? (
+                  <div className="my-6 flex items-center gap-3 text-xs text-subtle">
+                    <div className="h-px flex-1 bg-border" />
+                    or email
+                    <div className="h-px flex-1 bg-border" />
+                  </div>
+                ) : (
+                  <div className="mt-6" />
+                )}
 
                 <form onSubmit={onEmailSubmit} className="space-y-3">
                   {mode === "signup" ? (

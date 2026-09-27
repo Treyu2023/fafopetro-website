@@ -13,8 +13,6 @@ export const sumranVault = {
   partnerFull: "Sumran Nasir (Muhammad) / inventory under FAFO & Muhammad",
   partnerEmail: "private.sumran.nasir@gmail.com",
   company: "FAFO PETRO SERVICES L.L.C.",
-  /** Share this code with Sumran only — change anytime in this file */
-  accessCode: "SUM-RUN",
   storageKey: "fafo-sumran-unlocked-v1",
   driveRoot:
     "https://drive.google.com/drive/folders/1575A1njagYR7Shdye2KMFeudn4Yi_Bka",

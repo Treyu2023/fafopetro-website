@@ -59,13 +59,7 @@ function LeadsPage() {
             placeholder="Access code"
             className="mt-4 h-11 w-full rounded-xl border border-border bg-bg px-3 text-sm text-fg outline-none focus:border-primary"
           />
-          {error ? (
-            <p className="mt-2 text-sm text-danger">{error}</p>
-          ) : (
-            <p className="mt-2 text-xs text-subtle">
-              Default code: FAFO-LEADS (override with QUOTE_LEADS_CODE env)
-            </p>
-          )}
+          {error ? <p className="mt-2 text-sm text-danger">{error}</p> : null}
           <button
             type="submit"
             disabled={busy}

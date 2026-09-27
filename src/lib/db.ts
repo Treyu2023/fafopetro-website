@@ -9,11 +9,27 @@ const databaseUrl =
   rawDatabaseUrl && rawDatabaseUrl.trim() ? rawDatabaseUrl : undefined;
 
 /**
- * Active backend: real **Neon** when `DATABASE_URL` is set (deployed / configured
- * sandbox), otherwise a local embedded **PGLite** (Postgres compiled to WASM) so
- * the app has a working database even with nothing configured — the live preview
- * included. Swap in Neon later by just setting `DATABASE_URL`; no code changes.
+ * Neon when `DATABASE_URL` is set. Local dev and the live preview use embedded
+ * PGLite when it is unset. Vercel never falls through to that in-memory database.
  */
+export function isHostedDeploy(): boolean {
+  if (typeof process === "undefined") return false;
+  return (
+    process.env.VERCEL === "1" ||
+    process.env.VERCEL_ENV === "production" ||
+    process.env.VERCEL_ENV === "preview"
+  );
+}
+
+const MISSING_PRODUCTION_DATABASE =
+  "[db] DATABASE_URL is not set. Refusing the in-memory PGLite database on Vercel. Set DATABASE_URL to the Neon Postgres connection string.";
+
+function assertHostedDatabase(): void {
+  if (!isHostedDeploy() || databaseUrl) return;
+  console.error(MISSING_PRODUCTION_DATABASE);
+  throw new Error(MISSING_PRODUCTION_DATABASE);
+}
+
 export const dbSource: DbSource = databaseUrl ? "neon" : "pglite";
 
 /**
@@ -176,6 +192,7 @@ async function createSql(): Promise<Sql> {
         "or a server route loader, never from client code.",
     );
   }
+  assertHostedDatabase();
   return dbSource === "neon" ? createNeonSql() : createPgliteSql();
 }
 
@@ -220,6 +237,10 @@ export async function getPglite(): Promise<import("@electric-sql/pglite").PGlite
  * module kick it off immediately (see bottom of file).
  */
 export function ensureDbReady(): Promise<void> {
+  if (isHostedDeploy() && !databaseUrl) {
+    console.error(MISSING_PRODUCTION_DATABASE);
+    return Promise.reject(new Error(MISSING_PRODUCTION_DATABASE));
+  }
   if (dbSource !== "pglite") return Promise.resolve();
   return getSql().then(() => undefined);
 }
@@ -229,7 +250,9 @@ export function ensureDbReady(): Promise<void> {
 const globalBoot = globalThis as typeof globalThis & {
   __pgBootstrapPromise__?: Promise<void>;
 };
-if (typeof window === "undefined" && dbSource === "pglite") {
+if (typeof window === "undefined" && isHostedDeploy() && !databaseUrl) {
+  console.error(MISSING_PRODUCTION_DATABASE);
+} else if (typeof window === "undefined" && dbSource === "pglite") {
   globalBoot.__pgBootstrapPromise__ ??= ensureDbReady().catch((err) => {
     globalBoot.__pgBootstrapPromise__ = undefined;
     console.error("[db] PGLite bootstrap failed:", err);
