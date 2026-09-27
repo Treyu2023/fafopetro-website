@@ -31,6 +31,7 @@ import {
   type StockStatus,
 } from "@/data/sumran";
 import { cn } from "@/lib/utils";
+import { unlockSumranVault } from "@/lib/sumran-access";
 
 export const Route = createFileRoute("/sumran")({
   component: SumranPage,
@@ -83,19 +84,18 @@ function SumranPage() {
     return { total: stockParts.length, inStock, sold, confirm };
   }, []);
 
-  function tryUnlock(e: React.FormEvent) {
+  async function tryUnlock(e: React.FormEvent) {
     e.preventDefault();
-    const normalized = code.trim().toUpperCase().replace(/\s+/g, "-");
-    const expected = sumranVault.accessCode.toUpperCase();
-    if (normalized === expected || code.trim().toUpperCase() === expected) {
+    setError("");
+    try {
+      await unlockSumranVault({ data: { code } });
       try {
         sessionStorage.setItem(sumranVault.storageKey, "1");
       } catch {
         /* ignore */
       }
       setUnlocked(true);
-      setError("");
-    } else {
+    } catch {
       setError("That code doesn’t match. Ask Ryan for the partner code.");
     }
   }
@@ -500,8 +500,8 @@ function SumranPage() {
                 Send Sumran this page URL (not linked from the public menu).
               </li>
               <li>
-                Share the access code separately (text/call) — currently set in
-                code as partner code.
+                Share the access code separately (text/call). It is not stored
+                in this page.
               </li>
               <li>
                 Add him as a viewer/editor on the Drive vault folders only — not

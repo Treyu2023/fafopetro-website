@@ -36,28 +36,28 @@ export const site = {
   githubProgen:
     "https://github.com/Treyu2023/fafo-chrome-extensions/tree/main/ProGen",
   githubToolbox: "https://github.com/Treyu2023/FAFO-Power-Toolbox",
-  /** GitHub Releases (zip installs) */
-  releaseExtensions:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/tag/v6.4.68",
-  releaseUltimateTabZip:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/download/v6.4.68/FAFO-Ultimate-Tab-6.4.68.zip",
-  releaseLocalMediaZip:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/download/v7.3.1/FAFO-Local-Media-7.3.1.zip",
-  releaseProgenZip:
-    "https://github.com/Treyu2023/fafo-chrome-extensions/releases/tag/v7.3.1",
-  releaseToolbox:
-    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/tag/v1.11.8",
+  /**
+   * Install links that resolve for a public visitor.
+   * Ultimate Tab / Local Media / Progen source repos are private, so those
+   * downloads are the on-site zips. Power Toolbox source is public; the zip
+   * is the current `main` tree (see VERSION / launcher, 3.5.06).
+   */
+  releaseExtensions: "/downloads/FAFO-Ultimate-Tab-6.4.102.zip",
+  releaseUltimateTabZip: "/downloads/FAFO-Ultimate-Tab-6.4.102.zip",
+  releaseLocalMediaZip: "/downloads/FAFO-Local-Media-7.3.1.zip",
+  releaseProgenZip: "/downloads/FAFO-Progen.zip",
+  releaseToolbox: "https://github.com/Treyu2023/FAFO-Power-Toolbox",
   releaseToolboxZip:
-    "https://github.com/Treyu2023/FAFO-Power-Toolbox/releases/download/v1.11.8/FAFO-Power-Toolbox-1.11.8.zip",
-  /** On-site zip mirrors (same packages as Releases) */
+    "https://github.com/Treyu2023/FAFO-Power-Toolbox/archive/refs/heads/main.zip",
   downloadLocalMedia: "/downloads/FAFO-Local-Media-7.3.1.zip",
-  downloadUltimateTab: "/downloads/FAFO-Ultimate-Tab-6.4.68.zip",
+  downloadUltimateTab: "/downloads/FAFO-Ultimate-Tab-6.4.102.zip",
   downloadProgen: "/downloads/FAFO-Progen.zip",
-  downloadToolbox: "/downloads/FAFO-Power-Toolbox-1.11.8.zip",
+  downloadToolbox:
+    "https://github.com/Treyu2023/FAFO-Power-Toolbox/archive/refs/heads/main.zip",
   versions: {
     localMedia: "7.3.1",
-    ultimateTab: "6.4.68",
-    toolbox: "1.11.8",
+    ultimateTab: "6.4.102",
+    toolbox: "3.5.06",
     architect: "15.1",
   },
   /** Drive fallbacks */
@@ -228,7 +228,7 @@ export const toolboxFeatures = [
         href: site.downloadUltimateTab,
         primary: true,
       },
-      { label: "GitHub Release", href: site.releaseExtensions },
+      { label: "Direct zip", href: site.releaseUltimateTabZip },
     ],
   },
   {
@@ -270,7 +270,7 @@ export const toolboxFeatures = [
         href: site.downloadProgen,
         primary: true,
       },
-      { label: "Source on GitHub", href: site.githubProgen },
+      { label: "Direct zip", href: site.downloadProgen },
     ],
   },
   {
@@ -292,7 +292,7 @@ export const toolboxFeatures = [
         primary: true,
       },
       { label: "GitHub repo", href: site.githubToolbox },
-      { label: `Release v${site.versions.toolbox}`, href: site.releaseToolbox },
+      { label: `Source v${site.versions.toolbox}`, href: site.releaseToolboxZip },
     ],
   },
 ];

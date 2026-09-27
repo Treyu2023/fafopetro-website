@@ -1,5 +1,6 @@
 /** Server-only media slot persistence. */
 import { getSql } from "@/lib/db";
+import { sitesAdminCode } from "@/lib/access-code";
 import { MEDIA_SLOTS, type MediaKind } from "@/data/media-slots";
 import type { MediaSlotResolved } from "@/lib/media-slots-types";
 
@@ -16,12 +17,7 @@ export type MediaSlotOverride = {
   updated_at: string | null;
 };
 
-export const MEDIA_ADMIN_CODE = () =>
-  (
-    process.env.SITES_ADMIN_CODE ||
-    process.env.QUOTE_LEADS_CODE ||
-    "FAFO-LEADS"
-  ).toUpperCase();
+export const MEDIA_ADMIN_CODE = (): string | null => sitesAdminCode();
 
 export async function ensureMediaTables() {
   const sql = await getSql();

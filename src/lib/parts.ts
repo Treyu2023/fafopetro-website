@@ -7,8 +7,8 @@ import type { PartWithPrices } from "@/lib/parts-types";
 
 export type { PartWithPrices };
 
-function assertCode(code: string, expected: string) {
-  if (code.trim().toUpperCase() !== expected) {
+function assertCode(code: string, expected: string | null) {
+  if (!expected || code.trim().toUpperCase() !== expected) {
     throw new Error("Invalid access code");
   }
 }

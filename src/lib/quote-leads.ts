@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getSql } from "@/lib/db";
+import { quoteLeadsCode } from "@/lib/access-code";
 import { quoteRates } from "@/lib/quote-rates";
 import type { LeadPayload, LeadRow } from "@/lib/quote-types";
 
@@ -109,10 +110,8 @@ export const listQuoteLeads = createServerFn({ method: "POST" })
     return { code: String(d?.code || "") };
   })
   .handler(async ({ data }): Promise<{ ok: true; rows: LeadRow[] }> => {
-    const expected = (
-      process.env.QUOTE_LEADS_CODE || "FAFO-LEADS"
-    ).toUpperCase();
-    if (data.code.trim().toUpperCase() !== expected) {
+    const expected = quoteLeadsCode();
+    if (!expected || data.code.trim().toUpperCase() !== expected) {
       throw new Error("Invalid access code");
     }
     const sql = await ensureQuoteLeadsTable();

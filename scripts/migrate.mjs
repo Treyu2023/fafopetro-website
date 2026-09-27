@@ -14,10 +14,20 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import pg from "pg";
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL?.trim();
+const hostedDeploy =
+  process.env.VERCEL === "1" ||
+  process.env.VERCEL_ENV === "production" ||
+  process.env.VERCEL_ENV === "preview";
 if (!databaseUrl) {
+  if (hostedDeploy) {
+    console.error(
+      "[migrate] DATABASE_URL is not set. Refusing to finish a Vercel build without Postgres. Set DATABASE_URL in the Vercel project environment.",
+    );
+    process.exit(1);
+  }
   console.log(
-    "[migrate] DATABASE_URL not set — skipping (the PGLite fallback migrates itself).",
+    "[migrate] DATABASE_URL not set — skipping (local dev applies migrations with PGLite).",
   );
   process.exit(0);
 }
